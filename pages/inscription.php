@@ -3,22 +3,17 @@
 <?php
     require '../model/model.php';
 
-    if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
-                $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'],
-                        $_POST['niveau'],$_POST['salaire'])) {
+     if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
+                $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
 
+                                // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
+                                // $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance']);die;
 
             $requeste = new ModelUser();
 
             $requeste->addUser($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
                             $_POST['username'],$_POST['passwords'],$_POST['roles'],$_POST['matricule'], $_POST['lieu_naissance'],
-
-                            $_POST['email'],$_POST['niveau'],$_POST['tel']);
-
-    
-    }
-
-            
+                            $_POST['email'],$_POST['tel']);
 
             // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
             // $_POST['username'],$_POST['passwords'],$_POST['roles'], $_POST['lieu_naissance'],
@@ -28,7 +23,8 @@
             //                     $_POST['username'],$_POST['passwords'],$_POST['roles'], $_POST['lieu_naissance'],
             //                     $_POST['niveau']);
 
-
+    
+    }
 ?>
 
 
@@ -47,10 +43,18 @@
     <div class="container d-flex justify-content-center">
         <div class="col-md-8  ">
                 <div class=" text text-center mb-2">
-                    <h4>INSCRIPTION </h4>
+                    
                 </div>
 
                 <form class="row g-1 d-flex justify-content-center no-wrap m-2  bg-light needs-validation" novalidate action="inscription.php" method="post" >
+                <nav class="navbar navbar-dark bg-dark">
+                         <div class="container-fluid">
+                             <a class="navbar-brand" href="#">
+                                 <img src="" alt="" width="40" height="24">
+                                 <span class="text-center"> INSCRIPTION </span>
+                             </a>
+                         </div>
+                     </nav>
                     <div class="col-md-6 ">
                         <label for="input1" class="form-label">Nom</label>
                         <input type='text' name='nom' placeholder="nom" class="form-control" id="validationServer01" required>
