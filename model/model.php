@@ -13,14 +13,31 @@
             }
         }  
 
-        public function generateMatricule(){
             
+        function generateMatricule($n=2) {
+            // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            // $randomString = '';
+
+            // // $sql = 'SELECT MAX(Id) FROM user';
+            // // $dbb=$sql->execute();
+            // // $this->db->exec('SELECT MAX(Id) FROM user');
+            // // $last = $this->db->lastInsertId();
+        
+            // for ($i = 0; $i < $n; $i++) {
+            //     $index = rand(0, strlen($characters) - 1);
+            //     $randomString .= $characters[$index];
+            // }
+        
+            // echo $randomString.''.$this->db->lastInsertId();
+            $text= 'ES0';
+            echo $text.''.$this->db->lastInsertId()+1;
         }
+        
        
         public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`etat`)
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
             
                         $sql->execute(array(
@@ -51,8 +68,8 @@
         public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule,$lieu_naissance=null,$email=null,$tel=null){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`matricule`,`lieu_naissance`,`email`,`tel`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`matricule`,`lieu_naissance`,`email`,`tel`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel,:etat)');
             
                         $sql->execute(array(
                         
@@ -66,12 +83,17 @@
                         'matricule' => $matricule,
                         'lieu_naissance' => $lieu_naissance,
                         'email' => $email,
-                        'tel' => $tel
+                        'tel' => $tel,
+                        'etat' => 0
                         ));
                     // return $sql;
                     if ($sql) {
                      
-                        echo "<script>alert('Inscription reussie')</script>";
+                        echo ' 
+                                <script>
+                                            alert("Inscription Reussie")
+                                </script>
+                             ';
                         $sql->closeCursor();
                     }
             } catch (\Throwable $th) {
@@ -177,7 +199,14 @@
 
         }
 
+        public function getEtatById($id)
+        {
+            # code...
+        }
 
+        public function getEtat(){
+
+        }
 
 
         

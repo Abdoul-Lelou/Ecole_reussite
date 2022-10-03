@@ -10,8 +10,10 @@
             $requeste = new ModelUser();
 
             $requeste->addUser($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
-                            $_POST['username'],$_POST['passwords'],$_POST['roles'],$_POST['matricule'], $_POST['lieu_naissance'],
+                            $_POST['username'],$_POST['passwords'],$_POST['roles'],$requeste->generateMatricule(5), $_POST['lieu_naissance'],
                             $_POST['email'],$_POST['tel']);
+
+            $requeste->generateMatricule(5);
 
             // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
             // $_POST['username'],$_POST['passwords'],$_POST['roles'], $_POST['lieu_naissance'],
@@ -32,6 +34,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Inscription</title>
@@ -39,10 +43,19 @@
 <body>
 
     <div class="container d-flex justify-content-center">
-        <div class="col-md-8  ">
-                <div class=" text text-center mb-2">
+        <div class="col-md-8  mt-4">
+                <!-- <div class=" text text-center mb-2">
                     <h4>INSCRIPTION </h4>
-                </div>
+                </div> -->
+
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand text text-center" href="#">
+                        <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        INSCRIPTION
+                        </a>
+                    </div>
+                </nav>
 
                 <form class="row g-1 d-flex justify-content-center no-wrap m-2  bg-light needs-validation" novalidate action="inscription.php" method="post" >
                     <div class="col-md-6 ">
@@ -147,6 +160,7 @@
           
             </div>
         </div>
+    
         
         <!-- <div class="row d-flex justify-content-center mt-4">
             <button type="submit" class="btn btn-success col-2">S'inscrire</button>
