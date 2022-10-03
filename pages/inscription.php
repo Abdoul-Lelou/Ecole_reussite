@@ -43,7 +43,7 @@
     <div class="container d-flex justify-content-center">
         <div class="col-md-8  ">
                 <div class=" text text-center mb-2">
-                    
+                    <h4>INSCRIPTION </h4>
                 </div>
 
                 <form class="row g-1 d-flex justify-content-center no-wrap m-2  bg-light needs-validation" novalidate action="inscription.php" method="post" >

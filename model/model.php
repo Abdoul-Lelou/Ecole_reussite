@@ -38,7 +38,7 @@
         public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`etat`)
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
             
                         $sql->execute(array(
@@ -84,7 +84,8 @@
                         'matricule' => $matricule,
                         'lieu_naissance' => $lieu_naissance,
                         'email' => $email,
-                        'tel' => $tel
+                        'tel' => $tel,
+                        // 'etat'=>0
                         ));
                     // return $sql;
                     if ($sql) {
@@ -194,7 +195,14 @@
         public function getPointageByUserId(){
 
         }
+          public function getEtatById($id)
+        {
+            # code...
+        }
 
+        public function getEtat(){
+
+        }
 
 
 

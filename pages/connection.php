@@ -31,7 +31,7 @@
 
              <div class="d-flex justify-content-center mt-5 ">
 
-                 <form action="" method="post" class="row g-2 d-block bg-light col-md-8">
+                 <form action="connection.php" method="post" class="row g-2 d-block bg-light col-md-8">
 
                      <nav class="navbar navbar-dark bg-dark">
                          <div class="container-fluid">
