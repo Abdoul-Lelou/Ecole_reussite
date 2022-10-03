@@ -4,11 +4,11 @@
     if (isset($_POST['username'],$_POST['passwords'])) {
 
 
-            $requeste = new ModelUser(){
+            $requeste = new ModelUser();
 
-            $requeste->conect($_POST['username'],$_POST['passwords']);
+            $requeste->connect($_POST['username'],$_POST['passwords']);
 
-            }
+    }
     
 ?>
 
