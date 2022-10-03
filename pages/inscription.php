@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="inscription.php" method="post">
-        <input type='text' name='nom'>
-        <input type="text" name="prenom">
-        <input type="text" name="age">
+    <form action="connection.php" method="post">
+        <input type='text' name='nom' placeholder>
+        <input type="text" name="prenom" placeholder>
+        <input type="number" name="id">
         <input type="text" name="sexe">
         <input type="text" name="matricule">
         <input type="text" name="username">

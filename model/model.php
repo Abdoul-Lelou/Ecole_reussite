@@ -6,13 +6,35 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=localhost;dbname=simplon;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=simplon;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
             }
         }  
-       
+ 
+      /*  public function ajout($nom,$prenom){
+        $sql= $this->$db->prepare('INSERT INTO apprenant(id,nom,prenom)VALUES(null,:nom,:prenom)');
+        $sql->execute([
+            'nom'=>$nom,
+            'prenom'=>$prenom
+        ]);
+
+       } */
+
+
+          /*   public function supprimer($id){
+                $sql=$this->db->prepare ('DELETE from apprenant where id=:id');
+                $sql->execute([
+                    'id'=>$id
+                ]);
+
+            }
+ */
+
+
+
+        
         public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule=null,
                                 $lieu_naissance=null,$salaire=null,$email=null,$niveau=null,$tel=null){
             
