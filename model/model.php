@@ -14,7 +14,7 @@
         }  
 
             
-        function generateMatricule() {
+        function generateMatricule($n=2) {
             // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
             // $randomString = '';
 
@@ -29,15 +29,15 @@
             // }
         
             // echo $randomString.''.$this->db->lastInsertId();
-            // $text= 'ES0';
-            echo $this->db->lastInsertId()+1;
+            $text= 'ES0';
+            echo $text.''.$this->db->lastInsertId()+1;
         }
         
        
         public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`etat`)
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
             
                         $sql->execute(array(
@@ -65,9 +65,11 @@
             }
         }
 
+       
         public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule,$lieu_naissance=null,$email=null,$tel=null){
-            
+            $etat = 0;
             try {
+
                 $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`matricule`,`lieu_naissance`,`email`,`tel`,`etat`)
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel,:etat)');
             
@@ -84,7 +86,7 @@
                         'lieu_naissance' => $lieu_naissance,
                         'email' => $email,
                         'tel' => $tel,
-                        'etat' => 0
+                        'etat' => $etat
                         ));
                     // return $sql;
                     if ($sql) {
@@ -95,6 +97,13 @@
                                 </script>
                              ';
                         $sql->closeCursor();
+                    }else{
+                        echo ' 
+                                <script>
+                                            alert("Inscription Echoué")
+                                </script>
+                             ';
+                        
                     }
             } catch (\Throwable $th) {
                 // echo $th->getMessage();
