@@ -9,6 +9,6 @@
 
         $user = new ModelUser();
 
-        $user->edit($id,$nom,$prenom);
+        // $user->edit($id,$nom,$prenom);
 
     }
