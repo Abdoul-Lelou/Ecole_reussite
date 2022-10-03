@@ -6,40 +6,22 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=simplon;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_réussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
             }
         }  
- 
-      /*  public function ajout($nom,$prenom){
-        $sql= $this->$db->prepare('INSERT INTO apprenant(id,nom,prenom)VALUES(null,:nom,:prenom)');
-        $sql->execute([
-            'nom'=>$nom,
-            'prenom'=>$prenom
-        ]);
 
-       } */
-
-
-          /*   public function supprimer($id){
-                $sql=$this->db->prepare ('DELETE from apprenant where id=:id');
-                $sql->execute([
-                    'id'=>$id
-                ]);
-
-            }
- */
-
-
-
-        
-        public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule=null,
-                                $lieu_naissance=null,$salaire=null,$email=null,$niveau=null,$tel=null){
+        public function generateMatricule(){
             
-            $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`tel`,`matricule`,`lieu_naissace`,`niveau`,`salaire`,`email`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:tel,:matricule,:lieu_naissance,:niveau,:salaire,:email)');
+        }
+       
+        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
+            
+            try {
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
             
                         $sql->execute(array(
                         
@@ -50,18 +32,56 @@
                         'username' => $username,
                         'passwords' => $passwords,
                         'roles' => $roles,
-                        'tel' => $tel,
+                        'niveau' => $niveau,
+                        'lieu_naissance' => $lieu_naissance
+                       
+                        ));
+                    // return $sql;
+                    if ($sql) {
+                        # code...
+                        echo "<script>alert('Inscription reussie')</script>";
+                        $sql->closeCursor();
+                    }
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
+        }
+
+        public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule,$lieu_naissance=null,$email=null,$tel=null){
+            
+            try {
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`matricule`,`lieu_naissance`,`email`,`tel`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel)');
+            
+                        $sql->execute(array(
+                        
+                        'nom' =>$nom,
+                        'prenom' => $prenom,
+                        'age' => $age,
+                        'sexe' => $sexe,
+                        'username' => $username,
+                        'passwords' => $passwords,
+                        'roles' => $roles,
                         'matricule' => $matricule,
                         'lieu_naissance' => $lieu_naissance,
                         'email' => $email,
-                        'niveau' => $niveau,
-                        'salaire' => $salaire
-                        
+                        'tel' => $tel
                         ));
-                    return $sql;
+                    // return $sql;
+                    if ($sql) {
+                     
+                        echo "<script>alert('Inscription reussie')</script>";
+                        $sql->closeCursor();
+                    }
+            } catch (\Throwable $th) {
+                // echo $th->getMessage();
+                $sql->closeCursor();
+            }
         }
        
-        public function updateUser(){  
+        public function updateUser(){ 
+             
         }
 
         public function getUser(){
