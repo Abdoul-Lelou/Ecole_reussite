@@ -14,7 +14,7 @@
         }  
 
             
-        function generateMatricule($n=2) {
+        function generateMatricule() {
             // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
             // $randomString = '';
 
@@ -29,8 +29,8 @@
             // }
         
             // echo $randomString.''.$this->db->lastInsertId();
-            $text= 'ES0';
-            echo $text.''.$this->db->lastInsertId()+1;
+            // $text= 'ES0';
+            echo $this->db->lastInsertId()+1;
         }
         
        

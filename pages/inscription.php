@@ -1,30 +1,33 @@
 <?php
     require '../model/model.php';
 
-    // if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
-    //             $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
+    if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
+                $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
 
                                 // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
                                 // $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance']);die;
 
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $age= $_POST['age'];
+            $sexe= $_POST['sexe'];
+            $roles= $_POST['roles'];
+            $username= $_POST['username'];
+            $passwords= $_POST['passwords'];
+            $email= $_POST['email'];
+            $lieu_naissance= $_POST['lieu_naissance'];
+            $tel= $_POST['tel'];
+
             $requeste = new ModelUser();
 
-            $requeste->addUser($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
-                            $_POST['username'],$_POST['passwords'],$_POST['roles'],$requeste->generateMatricule(5), $_POST['lieu_naissance'],
-                            $_POST['email'],$_POST['tel']);
+            $matricule = $requeste->generateMatricule();
 
-            $requeste->generateMatricule(5);
+            $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
+            
 
-            // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
-            // $_POST['username'],$_POST['passwords'],$_POST['roles'], $_POST['lieu_naissance'],
-            // $_POST['niveau']);die;
-
-            // $requeste->ajoutEleve($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
-            //                     $_POST['username'],$_POST['passwords'],$_POST['roles'], $_POST['lieu_naissance'],
-            //                     $_POST['niveau']);
 
     
-    // }
+    }
 ?>
 
 
