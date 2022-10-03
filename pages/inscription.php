@@ -49,7 +49,7 @@
 
             $requeste = new ModelUser();
 
-            $matricule = $requeste->generateMatricule();
+            $matricule = "kk";//$requeste->generateMatricule();
 
             $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
 
