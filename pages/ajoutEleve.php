@@ -15,7 +15,7 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['use
  $role = "eleve";
 
  $requeste = new ModelUser();
-
+ 
  $requeste->ajoutEleve($om,$prenom,$age,$sexe,$username,$passwords,$niveau,$role,$lieu_naissance);
  }
  ?> 
@@ -47,53 +47,53 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['use
             <nav class="navbar bg-dark">
   <div class="container ">
     <a class="navbar-brand text-white bg-dark " href="#">
-       <img src="ecole_reussite.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+       <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
       Ajouter un Eleve
     </a>
   </div>
 </nav>
 
-        <form class="row g-3 mt-4 bg-light needs-validation">
+        <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="ajoutEleve:php" method="POST">
             <div class="col-md-6  mt-4">
             <label for="nom">nom</label>
             <input type="text" name="nom" placeholder="nom" class="form-control p-2" id="validationServer01" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>  
+            <div class="invalid-feedback">champ invalide</div>  
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="prenom">prenom</label>
             <input type="text" name="prenom" placeholder="prenom"class="form-control p-2" id="validationServer02" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>
+            <div class="invalid-feedback">champ invalide</div>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="username">username</label>
             <input type="text" name="username"placeholder="username"class="form-control p-2" id="validationServer03" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>
+            <div class="invalid-feedback">champ invalide</div>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="password">password</label>
             <input type="text" name="password" placeholder="password"class="form-control p-2" id="validationServer04" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>
+            <div class="invalid-feedback">champ invalide</div>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="age">age</label>
             <input type="text" name="age" placeholder="age"class="form-control p-2" id="validationServer05" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>
+            <div class="invalid-feedback">champ invalide</div>
             </div>
 
             <div class="col-md-6 mt-4">
             <label for="lieu de naissance">lieu de nassance</label>
             <input type="text" name="lieu de naissance" placeholder="lieu de naissance"class="form-control p-2" id="validationServer08" required>
             <div class="valid-feedback"></div>
-            <div class="invalid-feedback"></div>
+            <div class="invalid-feedback">champ invalide</div>
             </div>
 
             
@@ -113,7 +113,7 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['use
                             <option value="3ème" name='sexe'>3ème</option>
                         </select>
                         <div class="valid-feedback"></div>
-                        <div  class="invalid-feedback"></div>
+                        <div  class="invalid-feedback">champ invalide</div>
             </div>
 
             
@@ -126,7 +126,7 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['use
                             <option value="f" name='sexe'>F</option>
                         </select>
                         <div class="valid-feedback"></div>
-                        <div  class="invalid-feedback"></div>
+                        <div  class="invalid-feedback">champ invalide</div>
             </div>
             <div class="row d-flex justify-content-center mt-4">
                         <button type="submit" class="btn btn-success col-3" >
@@ -137,7 +137,7 @@ if(isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['use
                             </i>
                         </button>
                        
-                     </div>
+            </div>
 
 
         </form>
