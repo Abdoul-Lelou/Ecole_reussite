@@ -6,7 +6,7 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=localhost;dbname=Ecole_reussite;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_réussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
