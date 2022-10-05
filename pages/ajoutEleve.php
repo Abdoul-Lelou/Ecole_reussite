@@ -97,6 +97,7 @@ if (isset(
                     <input type="text" name="age" onchange="checkAge()" placeholder="age" class="form-control p-2" id="validationServer05" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
+                    <div  class="invalid-age" style="display: none;">Age invalide</div>
                 </div>
 
                 <div class="col-md-6 mt-4">
