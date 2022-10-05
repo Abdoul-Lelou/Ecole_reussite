@@ -14,6 +14,25 @@
         }  
 
             
+        public function connecter($username,$passwords){
+            try{
+            $sql=$this->db->prepare('SELECT * FROM user');
+            $sql->execute();
+            while($donnee = $sql->fetch()){
+                if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
+                    header('location:../pages/accueil.php');
+                }
+            }
+
+        }  catch(\Throwable $th) {
+            echo $th->getMessage();
+            $sql->closeCursor();
+        }
+
+        
+     }
+
+
         function generateMatricule($n=2) {
             // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
             // $randomString = '';
