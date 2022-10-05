@@ -21,7 +21,7 @@
 function checkAge(){
     const age = document.querySelector('#validationServer07');
 
-    if (age.value <18){
+    if (age.value <6){
             document.querySelector('.invalid-age').style.display='block';
             document.querySelector('.invalid-age').style.color='red';
         setTimeout(()=>{
