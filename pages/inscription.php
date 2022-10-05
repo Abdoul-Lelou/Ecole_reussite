@@ -1,59 +1,28 @@
 <?php
-    // require '../model/model.php';
     require "../model/model.php";
 
-    // if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
-    //             $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
-
-    //                             // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
-    //                             // $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance']);die;
-
-    //         $nom = $_POST['nom'];
-    //         $prenom = $_POST['prenom'];
-    //         $age= $_POST['age'];
-    //         $sexe= $_POST['sexe'];
-    //         $roles= $_POST['roles'];
-    //         $username= $_POST['username'];
-    //         $passwords= $_POST['passwords'];
-    //         $email= $_POST['email'];
-    //         $lieu_naissance= $_POST['lieu_naissance'];
-    //         $tel= $_POST['tel'];
-    //         $matricule = $_POST['matricule'];
-
-    //         $requeste = new ModelUser();
-
-    //         $requeste->generateMatricule();
-
-    //         $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
-            
-
-
-    
-    // }
-
     if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['username'],
-                $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
+                $_POST['passwords'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
 
-                                // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
-                                // $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance']);die;
+                                
 
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $age= $_POST['age'];
-            $sexe= $_POST['sexe'];
-            $roles= $_POST['roles'];
-            $username= $_POST['username'];
-            $passwords= $_POST['passwords'];
-            $email= $_POST['email'];
-            $lieu_naissance= $_POST['lieu_naissance'];
-            $tel= $_POST['tel'];
+            $nom = trim($_POST['nom']);
+            $prenom = trim($_POST['prenom']);
+            $age= trim($_POST['age']);
+            $sexe= trim($_POST['sexe']);
+            $roles= 'employer';
+            $username= trim($_POST['username']);
+            $passwords= trim($_POST['passwords']);
+            $email= trim($_POST['email']);
+            $lieu_naissance= ltrim($_POST['lieu_naissance']);
+            $tel= trim($_POST['tel']);
 
             $requeste = new ModelUser();
 
-            $matricule = $_POST['matricule'];;//$requeste->generateMatricule();
+            $matricule = $requeste->generateMatricule();
 
             // var_dump($matricule);die;
-
+            $nom = htmlspecialchars($nom);
             $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
 
 }
@@ -76,9 +45,6 @@
 
     <div class="container d-flex justify-content-center">
         <div class="col-md-8  mt-4">
-                <!-- <div class=" text text-center mb-2">
-                    <h4>INSCRIPTION </h4>
-                </div> -->
 
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
@@ -152,25 +118,7 @@
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback"></div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="input10" class="form-label">Roles</label>
-                        <select name="roles" id="roles" class="form-select is-valid"  id="validationServer10" required>
-                            <option selected disabled value="">Choisir...</option>
-                            <option value="employer" name='role'>Employer</option>
-                        </select>
-                        <div class="valid-feedback"></div>
-                        <div  class="invalid-feedback"></div>
-                    </div>
-                    <!-- <div class="col-md-12">
-                        <label for="input11" class="form-label">Lieu_naissance</label>
-                        <input type="text" name="lieu_naissance" placeholder="lieu_naissance" class="form-control" id="validationServer11" required>
-                        <div class="valid-feedback"></div>
-                        <div  class="invalid-feedback">Champ invalide</div>
-                    </div> -->
-                    
-                    <!-- <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>  -->
+                   
                     <div class="row d-flex justify-content-center mt-2">
                         <button type="submit" class="btn btn-success col-3" >
                             <i class="spinOff">S'inscrire</i>
@@ -183,8 +131,8 @@
                      </div>
         
                     <span class="text text-center mt-2">
-                        <p>Vous avez un compte 
-                            <a href="connexion.php" style="text-decoration:none;"> connectez-vous</a>
+                        <p>Vous avez un compte?
+                            <a href="../index.php" style="text-decoration:none;"> connectez-vous</a>
                         </p>
                     </span>
                 </form> 
@@ -192,16 +140,7 @@
           
             </div>
         </div>
-    
-        
-        <!-- <div class="row d-flex justify-content-center mt-4">
-            <button type="submit" class="btn btn-success col-2">S'inscrire</button>
-        </div>
-        
-        <span class="text text-center mt-2">
-            <p>Vous avez un compte <a href="connexion.php"> connectez-vous</a></p>
-            
-        </span> -->
+
 
         <script src="js/inscription.js"></script>
 

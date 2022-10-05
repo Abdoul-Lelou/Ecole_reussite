@@ -33,8 +33,8 @@
     }
     function checkTel(){
         const age = document.querySelector('#validationServer08');
-
-        if (age.value.length <9){
+        age = age.replace(/[^a-zA-Z ]/g, "")
+        if (age.value.length <18 || Number.isInteger(age.value)){
                 document.querySelector('.invalid-tel').style.display='block';
                 document.querySelector('.invalid-tel').style.color='red';
             setTimeout(()=>{

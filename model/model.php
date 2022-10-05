@@ -6,7 +6,7 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_réussite;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
@@ -21,7 +21,7 @@
             $sql->execute();
             while($donnee = $sql->fetch()){
                 if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
-                    header('location:../pages/accueil.php');
+                    header('location:pages/accueil.php');
                 }
             }
 
@@ -55,24 +55,26 @@
         }
         
        
-        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
+        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`matricule`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance,:matricule,:etat)');
             
                         $sql->execute(array(
                         
-                        'nom' =>$nom,
-                        'prenom' => $prenom,
-                        'age' => $age,
-                        'sexe' => $sexe,
-                        'username' => $username,
-                        'passwords' => $passwords,
-                        'roles' => $roles,
-                        'niveau' => $niveau,
-                        'lieu_naissance' => $lieu_naissance
-                       
+                            'nom' =>$nom,
+                            'prenom' => $prenom,
+                            'age' => $age,
+                            'sexe' => $sexe,
+                            'username' => $username,
+                            'passwords' => $passwords,
+                            'roles' => $roles,
+                            'niveau' => $niveau,
+                            'lieu_naissance' => $lieu_naissance,
+                            'matricule' => $matricule,
+                            'etat' => 0
+                        
                         ));
                     // return $sql;
                     if ($sql) {
