@@ -30,7 +30,7 @@
     
     // }
 
-    if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
+    if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['username'],
                 $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
 
                                 // var_dump($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
@@ -50,6 +50,8 @@
             $requeste = new ModelUser();
 
             $matricule = $requeste->generateMatricule();
+
+            // var_dump($matricule);die;
 
             $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
 
@@ -107,8 +109,8 @@
                         <div  class="invalid-feedback">Champ invalide</div>
                     </div>
                     <div class="col-md-6">
-                        <label for="input4" class="form-label">Matricule</label>
-                        <input type="text" name="matricule" onchange='return clkform2()' placeholder="matricule" class="form-control" id="validationServer04" required>
+                        <label for="input4" class="form-label">Lieu_naissance</label>
+                        <input type="text" name="lieu_naissance" onchange='return clkform2()' placeholder="lieu_naissance" class="form-control" id="validationServer04" required>
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback">Champ invalide</div>
                     </div>
@@ -158,12 +160,12 @@
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback"></div>
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <label for="input11" class="form-label">Lieu_naissance</label>
                         <input type="text" name="lieu_naissance" placeholder="lieu_naissance" class="form-control" id="validationServer11" required>
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback">Champ invalide</div>
-                    </div>
+                    </div> -->
                     
                     <!-- <div class="col-12">
                         <button type="submit" class="btn btn-primary">Sign in</button>

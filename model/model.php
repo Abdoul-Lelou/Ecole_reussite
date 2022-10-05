@@ -14,23 +14,23 @@
         }  
 
             
-        function generateMatricule($n=2) {
-            // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-            // $randomString = '';
+        function generateMatricule($n=3) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $randomString = '';
 
-            // // $sql = 'SELECT MAX(Id) FROM user';
-            // // $dbb=$sql->execute();
-            // // $this->db->exec('SELECT MAX(Id) FROM user');
-            // // $last = $this->db->lastInsertId();
+            // $sql = 'SELECT MAX(Id) FROM user';
+            // $dbb=$sql->execute();
+            // $this->db->exec('SELECT MAX(Id) FROM user');
+            // $last = $this->db->lastInsertId();
         
-            // for ($i = 0; $i < $n; $i++) {
-            //     $index = rand(0, strlen($characters) - 1);
-            //     $randomString .= $characters[$index];
-            // }
+            for ($i = 0; $i < $n; $i++) {
+                $index = rand(0, strlen($characters) - 1);
+                $randomString .= $characters[$index];
+            }
         
-            // echo $randomString.''.$this->db->lastInsertId();
-            $text= 'ES0';
-            echo $text.''.$this->db->lastInsertId()+1;
+            return 'MAE'.$randomString; //.''.$this->db->lastInsertId();
+            // $text= 'ES0';
+            // echo $text.''.$this->db->lastInsertId()+1;
         }
         
        
