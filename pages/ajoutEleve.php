@@ -28,7 +28,7 @@ if (isset(
 
     $matricule = $requeste->generateMatricule();
 
-    $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);
+    $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);}
    
 ?>
 
