@@ -12,17 +12,8 @@
                 die("Connection erreur du à ".$e->getMessage());
             }
         }  
-
             
 
-        function generateMatricule($n=3) {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-            $randomString = '';
-
-            // $sql = 'SELECT MAX(Id) FROM user';
-            // $dbb=$sql->execute();
-            // $this->db->exec('SELECT MAX(Id) FROM user');
-            // $last = $this->db->lastInsertId();
             
         public function connecter($username,$passwords){
             try{
@@ -43,9 +34,9 @@
      }
 
 
-        function generateMatricule($n=2) {
-            // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-            // $randomString = '';
+        function generateMatricule($n=3) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $randomString = '';
 
             // // $sql = 'SELECT MAX(Id) FROM user';
             // // $dbb=$sql->execute();
