@@ -49,7 +49,7 @@
 
             $requeste = new ModelUser();
 
-            $matricule = $requeste->generateMatricule();
+            $matricule = $_POST['matricule'];;//$requeste->generateMatricule();
 
             // var_dump($matricule);die;
 
