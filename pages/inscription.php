@@ -1,5 +1,6 @@
 <?php
-    require '../model/model.php';
+    // require '../model/model.php';
+    require "../model/model.php";
 
     if (isset($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],$_POST['matricule'],$_POST['username'],
                 $_POST['passwords'],$_POST['roles'],$_POST['tel'],$_POST['email'],$_POST['lieu_naissance'])) {
@@ -20,7 +21,9 @@
 
             $requeste = new ModelUser();
 
-            $matricule = $requeste->generateMatricule();
+            // $requeste->addUser($_POST['nom'],$_POST['prenom'],$_POST['age'],$_POST['sexe'],
+            //                 $_POST['username'],$_POST['passwords'],$_POST['roles'],$_POST['matricule'], $_POST['lieu_naissance'],
+            //                 $_POST['email'],$_POST['tel']);
 
             $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
             

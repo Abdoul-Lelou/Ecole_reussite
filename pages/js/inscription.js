@@ -3,16 +3,16 @@
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation');
-    var age = document.querySelector('#validationServer07');
+    // var age = document.querySelector('#validationServer07');
 
-    const selectElement = document.querySelector('#validationServer07');
+    // const selectElement = document.querySelector('#validationServer07');
 
-            selectElement.addEventListener('submit', (event) => {
-            const result = document.querySelector('.result');
-            result.textContent = `You like ${event.target.value}`;
-            event.preventDefault()
-            event.stopPropagation()
-            });
+    //         selectElement.addEventListener('submit', (event) => {
+    //         const result = document.querySelector('.result');
+    //         result.textContent = `You like ${event.target.value}`;
+    //         event.preventDefault()
+    //         event.stopPropagation()
+    //         });
 
     // Loop over them and prevent submission
     // Array.prototype.slice.call(forms)
