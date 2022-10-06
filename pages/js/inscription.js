@@ -3,16 +3,7 @@
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation');
-    var age = document.querySelector('#validationServer07');
-
-    const selectElement = document.querySelector('#validationServer07');
-
-            selectElement.addEventListener('submit', (event) => {
-            const result = document.querySelector('.result');
-            result.textContent = `You like ${event.target.value}`;
-            event.preventDefault()
-            event.stopPropagation()
-            });
+   
 
     // Loop over them and prevent submission
     // Array.prototype.slice.call(forms)
@@ -26,7 +17,7 @@
             form.classList.add('was-validated');
         }, false)
         })
-    })()
+})()
    
     function checkAge(){
         const age = document.querySelector('#validationServer07');
@@ -42,8 +33,8 @@
     }
     function checkTel(){
         const age = document.querySelector('#validationServer08');
-
-        if (age.value.length <9){
+        age = age.replace(/[^a-zA-Z ]/g, "")
+        if (age.value.length <18 || Number.isInteger(age.value)){
                 document.querySelector('.invalid-tel').style.display='block';
                 document.querySelector('.invalid-tel').style.color='red';
             setTimeout(()=>{
@@ -67,12 +58,3 @@
 
     }
 
-    $('#btn').show(function(){
-
-        $('#alert').removeClass('d-none');
-        
-        setTimeout(() => {
-          $('.alert').alert('close');
-        }, 2000);
-        
-      })

@@ -6,12 +6,13 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=localhost;dbname=Ecole_reussite;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
             }
         }  
+            
 
             
         public function connecter($username,$passwords){
@@ -20,9 +21,10 @@
             $sql->execute();
             while($donnee = $sql->fetch()){
                 if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
-                    header('location:../pages/accueil.php');
+                    header('location:pages/accueil.php');
                 }
             }
+            
 
         }  catch(\Throwable $th) {
             echo $th->getMessage();
@@ -33,44 +35,47 @@
      }
 
 
-        function generateMatricule($n=2) {
-            // $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-            // $randomString = '';
+        function generateMatricule($n=3) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $randomString = '';
 
             // // $sql = 'SELECT MAX(Id) FROM user';
             // // $dbb=$sql->execute();
             // // $this->db->exec('SELECT MAX(Id) FROM user');
             // // $last = $this->db->lastInsertId();
+
         
-            // for ($i = 0; $i < $n; $i++) {
-            //     $index = rand(0, strlen($characters) - 1);
-            //     $randomString .= $characters[$index];
-            // }
+            for ($i = 0; $i < $n; $i++) {
+                $index = rand(0, strlen($characters) - 1);
+                $randomString .= $characters[$index];
+            }
         
-            // echo $randomString.''.$this->db->lastInsertId();
-            $text= 'ES0';
-            echo $text.''.$this->db->lastInsertId()+1;
+            return 'MAE'.$randomString; //.''.$this->db->lastInsertId();
+            // $text= 'ES0';
+            // echo $text.''.$this->db->lastInsertId()+1;
         }
         
        
-        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance){
+        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`matricule`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance,:matricule,:etat)');
             
                         $sql->execute(array(
                         
-                        'nom' =>$nom,
-                        'prenom' => $prenom,
-                        'age' => $age,
-                        'sexe' => $sexe,
-                        'username' => $username,
-                        'passwords' => $passwords,
-                        'roles' => $roles,
-                        'niveau' => $niveau,
-                        'lieu_naissance' => $lieu_naissance
-                       
+                            'nom' =>$nom,
+                            'prenom' => $prenom,
+                            'age' => $age,
+                            'sexe' => $sexe,
+                            'username' => $username,
+                            'passwords' => $passwords,
+                            'roles' => $roles,
+                            'niveau' => $niveau,
+                            'lieu_naissance' => $lieu_naissance,
+                            'matricule' => $matricule,
+                            'etat' => 0
+                        
                         ));
                     // return $sql;
                     if ($sql) {
