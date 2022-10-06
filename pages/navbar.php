@@ -20,11 +20,11 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active text-light" aria-current="page" href="accueil.php">Accueil</a>
+          <a class="nav-link active text-light text-uppercase" aria-current="page" href="accueil.php">Accueil</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="text-light">Activités</span>
+            <span class="text-light text-uppercase">Activités</span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -34,7 +34,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="text-light">Compte</span>
+            <span class="text-light text-uppercase">Compte</span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item " href="../index.php">Se déconnecter</a></li>
