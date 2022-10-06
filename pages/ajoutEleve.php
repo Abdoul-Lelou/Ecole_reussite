@@ -28,8 +28,12 @@ if (isset(
 
     $matricule = $requeste->generateMatricule();
 
-    $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);}
-   
+    $add = $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);
+    if ($add) {
+        # code...
+        echo 'okkk';
+    }
+}
 ?>
 
 
@@ -94,10 +98,16 @@ if (isset(
 
                 <div class="col-md-6 mt-4">
                     <label for="age">age</label>
+<<<<<<< HEAD
                     <input type="text" name="age" onchange="checkAge()" placeholder="age" class="form-control p-2" id="validationServer05" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                     <div  class="invalid-age" style="display: none;">Age invalide</div>
+=======
+                    <input type="text" name="age" placeholder="age" class="form-control p-2" id="validationServer05" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">champ invalide</div>
+>>>>>>> 3e73cd257be5d8ca5b3284cbfa7e9cdf934dd26e
                 </div>
 
                 <div class="col-md-6 mt-4">

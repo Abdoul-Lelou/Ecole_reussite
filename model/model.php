@@ -6,7 +6,8 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
+
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
@@ -24,6 +25,7 @@
                     header('location:pages/accueil.php');
                 }
             }
+
 
         }  catch(\Throwable $th) {
             echo $th->getMessage();
@@ -170,6 +172,7 @@
                 //throw $th;
             }
         }
+
         public function updateSalaire(){
 
         }
