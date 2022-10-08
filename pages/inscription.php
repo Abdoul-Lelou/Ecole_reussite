@@ -49,7 +49,7 @@
 
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand text text-center user-select-none" href="#">
+                        <a class="navbar-brand text text-center pe-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
                         INSCRIPTION
                         </a>
