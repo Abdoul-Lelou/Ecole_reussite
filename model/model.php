@@ -4,7 +4,7 @@
         var $db;
         public function __construct()
         { 
-          try
+            try
             {
                 $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
             }catch(Exception $e)
@@ -13,14 +13,25 @@
             }
         }  
             
-
-            
+        function redirectUrl ($url){
+            echo '<script language="javascript">window.location.href ="'.$url.'"</script>';
+        }
+        
+        function setTimeout($fn, $timeout){
+            sleep(($timeout/1000));
+            $fn();
+        }
+        
+        
         public function connecter($username,$passwords){
+            session_start();
             try{
-            $sql=$this->db->prepare('SELECT * FROM user');
-            $sql->execute();
+                $sql=$this->db->prepare('SELECT * FROM user');
+                $sql->execute();
             while($donnee = $sql->fetch()){
                 if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
+                    $_SESSION['roles']= $donnee['roles'];
+                    $_SESSION['username']= $donnee['username'];
                     header('location:pages/accueil.php');
                 }
             }
@@ -79,7 +90,13 @@
                     // return $sql;
                     if ($sql) {
                         # code...
-                        echo "<script>alert('Inscription reussie')</script>";
+                        echo '
+                            <div class="w-50 m-0">
+                                <div class="alert alert-primary" role="alert">
+                                    A simple primary alert—check it out!
+                                </div>
+                            </div>
+                        ';
                         $sql->closeCursor();
                     }
             } catch (\Throwable $th) {
@@ -89,14 +106,20 @@
         }
 
        
-        public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule,$lieu_naissance=null,$email=null,$tel=null){
+        public function addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule,$lieu_naissance,$email,$tel){
             $etat = 0;
             try {
 
                 $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`matricule`,`lieu_naissance`,`email`,`tel`,`etat`)
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel,:etat)');
+                
+                $checkMail =$this->db->prepare('SELECT 1 FROM user WHERE email=:email');
+                $checkMail->bindParam(":email",$email);
+                $checkMail->execute();
+                $row = $checkMail->fetch(PDO::FETCH_ASSOC);
             
-                        $sql->execute(array(
+                if (!$row) {
+                    $sql->execute(array(
                         
                         'nom' =>$nom,
                         'prenom' => $prenom,
@@ -110,26 +133,45 @@
                         'email' => $email,
                         'tel' => $tel,
                         'etat' => $etat
-                        ));
+                    ));
                     // return $sql;
                     if ($sql) {
                      
                         echo ' 
-                                <script>
-                                            alert("Inscription Reussie")
-                                </script>
+                            <div class="w-75 h-25 d-flex justify-content-center">
+                                <div class="alert alert-primary" role="alert">
+                                    Inscription reussie!
+                                </div>
+                            </div>
+                            
                              ';
+                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/accueil.php"),3000);
                         $sql->closeCursor();
-                    }else{
-                        echo ' 
-                                <script>
-                                            alert("Inscription Echoué")
-                                </script>
-                             ';
-                        
                     }
+                }else {
+                    echo ' 
+                            
+                                <div id="erroMsg"  class="d-flex justify-content-center" role="alert">
+                                    <span class="badge bg-danger border border-danger">Email existe déjà!</span>
+                                </div>
+                           
+                             ';
+                 
+
+                    
+                    $sql->closeCursor();
+                }
+                
+
+                    
             } catch (\Throwable $th) {
-                // echo $th->getMessage();
+
+                echo ' 
+                        <div   class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
                 $sql->closeCursor();
             }
         }
@@ -171,8 +213,67 @@
         }
 
 
-        public function addPlanning(){
+        public function addPlanning($matiere,$heure,$jour,$user){
+            try {
 
+                $sql=$this->db->prepare('INSERT INTO `planing` ( `matiere`, `heure`, `jour`, `user`)
+                                            VALUES (:matiere,:heure,:jour,:user)');
+                
+                // $checkMail =$this->db->prepare('SELECT 1 FROM user WHERE email=:email');
+                // $checkMail->bindParam(":email",$email);
+                // $checkMail->execute();
+                // $row = $checkMail->fetch(PDO::FETCH_ASSOC);
+                
+                // if (!$row) {
+                    $sql->execute(array(
+                        
+                        'matiere' =>$matiere,
+                        'heure' => $heure,
+                        'jour' => $jour,
+                        'user' => $user
+                    ));
+                    
+                // }
+                    return $sql;
+                //     if ($sql) {
+                     
+                //         echo ' 
+                //             <div class="w-75 h-25 d-flex justify-content-center">
+                //                 <div class="alert alert-primary" role="alert">
+                //                     Inscription reussie!
+                //                 </div>
+                //             </div>
+                            
+                //              ';
+                //              $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/accueil.php"),3000);
+                //         $sql->closeCursor();
+                //     }
+                // }else {
+                //     echo ' 
+                            
+                //                 <div id="erroMsg"  class="d-flex justify-content-center" role="alert">
+                //                     <span class="badge bg-danger border border-danger">Email existe déjà!</span>
+                //                 </div>
+                           
+                //              ';
+                 
+
+                    
+                //     $sql->closeCursor();
+                // }
+                
+
+                    
+            } catch (\Throwable $th) {
+
+                echo ' 
+                        <div   class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
+                $sql->closeCursor();
+            }
         }
 
         public function updatePlanning(){

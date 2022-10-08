@@ -21,8 +21,7 @@
 
             $matricule = $requeste->generateMatricule();
 
-            // var_dump($matricule);die;
-            $nom = htmlspecialchars($nom);
+         
             $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
 
 }
@@ -35,8 +34,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Inscription</title>
@@ -49,7 +48,7 @@
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
                         <a class="navbar-brand text text-center" href="#">
-                        <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        <img src="../img/ecole_reussite.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
                         INSCRIPTION
                         </a>
                     </div>
@@ -95,7 +94,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="input7" class="form-label">Age</label>
-                        <input type="text" name="age" onchange="checkAge()"  placeholder="age" class="form-control age" id="validationServer07" required>
+                        <input type="text" name="age" onchange= "checkAge()" placeholder="age" class="form-control age" id="validationServer07" required>
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback">Champ invalide</div>
                         <div  class="invalid-age" style="display: none;">Age invalide</div>
@@ -120,7 +119,7 @@
                     </div>
                    
                     <div class="row d-flex justify-content-center mt-2">
-                        <button type="submit" class="btn btn-success col-3" >
+                        <button type="submit" class="btn btn-success col-3" onclick="hideMsg()">
                             <i class="spinOff">S'inscrire</i>
                             <i class="spinOn" style="display: none">
                                 <span class="spinner-border spinner-border-sm"  aria-hidden="true"></span>
@@ -141,8 +140,8 @@
             </div>
         </div>
 
-
         <script src="js/inscription.js"></script>
+
 
 </body>
 </html>
