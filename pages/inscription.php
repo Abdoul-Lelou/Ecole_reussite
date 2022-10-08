@@ -47,7 +47,7 @@
 
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand text text-center" href="#">
+                        <a class="navbar-brand text text-center user-select-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
                         INSCRIPTION
                         </a>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="input7" class="form-label">Age</label>
-                        <input type="text" name="age" onchange= "checkAge()" placeholder="age" class="form-control age" id="validationServer07" required>
+                        <input type="text" name="age" onchange="checkAge()" placeholder="age" class="form-control age" id="validationServer07" required>
                         <div class="valid-feedback"></div>
                         <div  class="invalid-feedback">Champ invalide</div>
                         <div  class="invalid-age" style="display: none;">Age invalide</div>
