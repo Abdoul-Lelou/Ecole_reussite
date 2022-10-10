@@ -159,6 +159,7 @@ if (isset(
 
         </div>
     </div>
+    
     <script src="js/ajoutEleve.js"></script>
 </body>
 

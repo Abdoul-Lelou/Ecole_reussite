@@ -6,7 +6,7 @@
         { 
             try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_reussite;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
@@ -49,21 +49,13 @@
         function generateMatricule($n=3) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
             $randomString = '';
-
-            // // $sql = 'SELECT MAX(Id) FROM user';
-            // // $dbb=$sql->execute();
-            // // $this->db->exec('SELECT MAX(Id) FROM user');
-            // // $last = $this->db->lastInsertId();
-
         
             for ($i = 0; $i < $n; $i++) {
                 $index = rand(0, strlen($characters) - 1);
                 $randomString .= $characters[$index];
             }
         
-            return 'MAE'.$randomString; //.''.$this->db->lastInsertId();
-            // $text= 'ES0';
-            // echo $text.''.$this->db->lastInsertId()+1;
+            return 'MAE'.$randomString;
         }
         
        
@@ -185,8 +177,16 @@
 
         }
 
-        public function getUserById(){
-
+        public function getUserById($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM user where id=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+        }  catch(\Throwable $th) {
+            echo $th->getMessage();
+            $sql->closeCursor();
+        }
         }
 
         public function getUserByRole(){
@@ -214,61 +214,58 @@
         }
 
 
-        public function addPlanning($matiere,$heure,$jour,$user){
+        public function addPlanning($matiere,$start,$end,$jour,$user,$classe){
             try {
 
-                $sql=$this->db->prepare('INSERT INTO `planing` ( `matiere`, `heure`, `jour`, `user`)
-                                            VALUES (:matiere,:heure,:jour,:user)');
+                $sql=$this->db->prepare('INSERT INTO `planning` ( `matiere`, `startTime`, `endTime`, `jour`, `user`,`classe`)
+                                            VALUES (:matiere,:startTime,:endTime,:jour,:user,:classe)');
                 
-                // $checkMail =$this->db->prepare('SELECT 1 FROM user WHERE email=:email');
-                // $checkMail->bindParam(":email",$email);
-                // $checkMail->execute();
-                // $row = $checkMail->fetch(PDO::FETCH_ASSOC);
-                
-                // if (!$row) {
+                $checkMail =$this->db->prepare('SELECT * FROM planning WHERE matiere=:matiere and jour= :jour and user=:user and startTime =:startTime');
+                $checkMail->bindParam(":matiere",$matiere);
+                $checkMail->bindParam(":jour",$jour);
+                $checkMail->bindParam(":user",$user);
+                $checkMail->bindParam(":startTime",$start);
+                $checkMail->execute();
+                $row = $checkMail->fetch(PDO::FETCH_ASSOC);
+
+               
+                if (!$row) {
+
                     $sql->execute(array(
                         
                         'matiere' =>$matiere,
-                        'heure' => $heure,
+                        'startTime' => $start,
+                        'endTime' => $end,
                         'jour' => $jour,
-                        'user' => $user
+                        'user' => $user,
+                        'classe' => $classe
                     ));
-                    
-                // }
-                    return $sql;
-                //     if ($sql) {
-                     
-                //         echo ' 
-                //             <div class="w-75 h-25 d-flex justify-content-center">
-                //                 <div class="alert alert-primary" role="alert">
-                //                     Inscription reussie!
-                //                 </div>
-                //             </div>
-                            
-                //              ';
-                //              $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/accueil.php"),3000);
-                //         $sql->closeCursor();
-                //     }
-                // }else {
-                //     echo ' 
-                            
-                //                 <div id="erroMsg"  class="d-flex justify-content-center" role="alert">
-                //                     <span class="badge bg-danger border border-danger">Email existe déjà!</span>
-                //                 </div>
-                           
-                //              ';
-                 
 
+                    return $sql;
+                    $sql->closeCursor();
                     
-                //     $sql->closeCursor();
-                // }
+                }else{
+                    echo ' 
+                            
+                                <div   class="d-flex justify-content-center" role="alert">
+                                    <span id="errorMsg" class="badge bg-danger border border-danger">Cours déjà prévu à cette date!</span>
+                                </div>
+                                <script>
+                                    setTimeout(()=>{
+                                        document.querySelector("#errorMsg").style.display= "none";
+                                    },2000)
+                                </script>
+                           
+                             ';
+                    $sql->closeCursor();
+                }
                 
 
                     
             } catch (\Throwable $th) {
 
                 echo ' 
-                        <div   class="d-flex justify-content-center" role="alert">
+                        <div class="d-flex justify-content-center" role="alert">
                             <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
                         </div>          
                      ';
@@ -282,6 +279,15 @@
         }
 
         public function getPlanning(){
+            try{
+                    $sql=$this->db->prepare('SELECT * FROM planning');
+                    $sql->execute();
+            
+                    return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
 
         }
 
@@ -342,6 +348,66 @@
 
         }
 
+        public function addClasse($eleve){
+
+            try {
+
+                $sql=$this->db->prepare('INSERT INTO `classe` ( `nom`, `niveau`, `eleve`)VALUES (:nom,:niveau,:eleve)');
+                
+                $checkMail =$this->db->prepare('');
+                $checkMail->bindParam(":matiere",$matiere);
+                $checkMail->bindParam(":jour",$jour);
+                $checkMail->bindParam(":user",$user);
+                $checkMail->bindParam(":startTime",$start);
+                $checkMail->execute();
+                $row = $checkMail->fetch(PDO::FETCH_ASSOC);
+
+               
+                if (!$row) {
+
+                    // $sql->execute(array(
+                        
+                    //     'matiere' =>$matiere,
+                    //     'startTime' => $start,
+                    //     'endTime' => $end,
+                    //     'jour' => $jour,
+                    //     'user' => $user,
+                    //     'classe' => $classe;
+                    // ));
+
+                    return $sql;
+                    $sql->closeCursor();
+                    
+                }else{
+                    echo ' 
+                            
+                                <div   class="d-flex justify-content-center" role="alert">
+                                    <span id="errorMsg" class="badge bg-danger border border-danger">Cours déjà prévu à cette date!</span>
+                                </div>
+                                <script>
+                                    setTimeout(()=>{
+                                        document.querySelector("#errorMsg").style.display= "none";
+                                    },2000)
+                                </script>
+                           
+                             ';
+                    $sql->closeCursor();
+                }
+                
+
+                    
+            } catch (\Throwable $th) {
+
+                echo ' 
+                        <div class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
+                $sql->closeCursor();
+            }
+
+        }
 
         
     }
