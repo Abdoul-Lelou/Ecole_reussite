@@ -6,7 +6,7 @@
         { 
           try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
@@ -146,7 +146,18 @@
 
         }
 
-        public function getUserByRole(){
+        public function getUserByRole($roles){
+            try {
+                $sql=$this->db->prepare('SELECT * FROM user WHERE roles =:roles ');
+                $sql->execute(array('roles'=>$roles));
+
+                return $sql->fetch();
+             
+                // return $sql;
+            } catch (\Throwable $th) {
+                //throw $th;
+                $sql->closeCursor();
+            }
 
         }
 
