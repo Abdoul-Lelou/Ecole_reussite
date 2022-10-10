@@ -34,12 +34,12 @@ const digits_only = string => [...string].every(c => '0123456789'.includes(c));
     function checkmontant(){
         const montant = document.querySelector('#validationServer02');
      
-        if (montant.value <18 || digits_only(montant.value) === false){
+        if (montant.value <30 || digits_only(montant.value) === false){
                 document.querySelector('.invalid-montant').style.display='block';
                 document.querySelector('.invalid-montant').style.color='red';
             setTimeout(()=>{
                 document.querySelector('.invalid-montant').style.display='none';
                 document.querySelector('#validationServer02').value='';
-            },3000);
+            },2000);
         }
     }

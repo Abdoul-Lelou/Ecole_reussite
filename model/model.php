@@ -152,19 +152,19 @@
 
         }
 
-        public function addSalaire($Montant,$Date_Heure,$Employer){
+        public function addSalaire($montant,$date_heure){
             try {
                 
-                $sql= $this->db->prepare('INSERT INTO `salaire`(`Montant`,`Date_Heure`,`Employer`)VALUES(:nom,:Date_Heure,:Employer)');
+                $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
                 $sql->execute(array(
-                    'Montant'=>$Montant,
-                    'Date_Heure'=>$Date_Heure,
-                    'Employer'=>$Employer
+                    'montant'=>$montant,
+                    'date_Heure'=>$date_heure,
+
 
                 ));
 
-                $sql= $this->db->prepare(' `salaire`(`Montant`,`Date_Heure`,`Employer`)VALUES(:Montant,:Date_Heure,:Employer)');
-
+/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`Employer`)VALUES(:montant,:date_heure,:employer)');
+ */
 
                 return $sql;
 

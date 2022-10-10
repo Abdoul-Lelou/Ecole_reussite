@@ -1,22 +1,23 @@
 <?php
 require "../model/model.php";
-
+//vérification des champs 
 if (isset(
     $_POST['date_heure'],
     $_POST['montant'],
     $_POST['Employer'],
 
 )) {
-    /* print_r($_POST); */
+     print_r($_POST);
     $date_heure = trim($_POST['Date_Heure']);
     $montant = trim($_POST['Montant']);
     $employer = trim($_POST['Employer']);
+    var_dump($montant,$date_heure);
 
     $requeste = new ModelUser();
 
-    $matricule = $requeste->generateMatricule();
+    // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($Date_Heure, $Montant, $Employer);
+    $requeste->addSalaire($Date_Heure, $Montant);
 }
 
 ?>
@@ -69,11 +70,18 @@ if (isset(
                                 <label for="input3">Employer</label>
                                 <select name="employer" placeholder="employer" class="form-select is-valid p-2" id="validationServer03" required>
                                     <option selected disabled value="">Choisir...</option>
-                                    <option value="" name='employer'></option>
-                                    <option value="" name='employer'></option>
-                                    <option value="" name='employer'></option>
-                                    <option value="" name='employer'></option>
-                                    <option value="" name='employer'></option>
+                                    <?php
+                                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                                        $sql = $db->prepare('SELECT * FROM user WHERE roles="employer"');
+                                        $sql->execute();
+
+                                        //afficher la liste des employer
+                                        while ($donnee = $sql->fetch()) {
+                                            echo '<option value=' . $donnee['id'] . '>';
+                                            echo ($donnee['prenom'] . ' ' . $donnee['nom']);
+                                            echo '</option>';
+                                        }
+                                    ?>
 
                                 </select>
                                 <div class="valid-feedback"></div>
