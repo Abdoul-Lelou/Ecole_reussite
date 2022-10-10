@@ -129,7 +129,6 @@
                                 Loading...
                             </i>
                         </button>
-                       
                      </div>
         
                     <span class="text text-center mt-2">

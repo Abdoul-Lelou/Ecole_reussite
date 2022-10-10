@@ -2,15 +2,15 @@
 require "../model/model.php";
 
 if (isset(
-    $_POST['Date_Heure'],
-    $_POST['Montant'],
+    $_POST['date_heure'],
+    $_POST['montant'],
     $_POST['Employer'],
 
 )) {
-
-    $Date_Heure = trim($_POST['Date_Heure']);
-    $Montant = trim($_POST['Montant']);
-    $Employer = trim($_POST['Employer']);
+    /* print_r($_POST); */
+    $date_heure = trim($_POST['Date_Heure']);
+    $montant = trim($_POST['Montant']);
+    $employer = trim($_POST['Employer']);
 
     $requeste = new ModelUser();
 
@@ -35,7 +35,7 @@ if (isset(
 <body>
     <header>
         <?php
-        include '';
+        include 'navbar.php';
         ?>
     </header>
     <div class="container col-6 mt-5 ">
@@ -52,50 +52,50 @@ if (isset(
                     </div>
                 </nav>
                 <div class="col-md-10 mt-4">
-                    <label for="Date_Heure">Date_Heure</label>
-                    <input type="datetime-local" name="Date_Heure" placeholder="Date_Heure" class="form-control p-2" id="validationServer08" required>
+                    <label for="input1">Date_Heure</label>
+                    <input type="datetime-local" name="date_heure" placeholder="date_heure" class="form-control p-2" id="validationServer01" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
                 <div class="col-md-10 mt-4">
-                    <label for="lieu de naissance">Montant</label>
-                    <input type="text" name="Montant" placeholder="Montant" class="form-control p-2" id="validationServer08" required>
+                    <label for="input2">montant</label>
+                    <input type="text" name="montant" onchange="checkmontant()" placeholder="montant" class="form-control montant p-2" id="validationServer02" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
+                    <div  class="invalid-montant" style="display: none;">veillez saisie des chiffres</div>
                 </div>
+                            <div class="col-md-10 mt-4">
+                                <label for="input3">Employer</label>
+                                <select name="employer" placeholder="employer" class="form-select is-valid p-2" id="validationServer03" required>
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option value="" name='employer'></option>
+                                    <option value="" name='employer'></option>
+                                    <option value="" name='employer'></option>
+                                    <option value="" name='employer'></option>
+                                    <option value="" name='employer'></option>
 
-                <div class="col-md-10 mt-4">
-                    <label for="input9">Employer</label>
-                    <select name="Employer" id="Employer" placeholder="Employer" class="form-select is-valid p-2" id="validationServer06" required>
-                        <option selected disabled value="">Choisir...</option>
-                        <option value="" name='Employer'></option>
-                        <option value="" name='Employer'></option>
-                        <option value="" name='Employer'></option>
-                        <option value="" name='Employer'></option>
-                        <option value="" name='Employer'></option>
+                                </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">champ invalide</div>
+                            </div>
 
-                    </select>
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback">champ invalide</div>
-                </div>
-
-                <div class="row d-flex justify-content-center mt-4 mb-3">
-                    <button type="submit" class="btn btn-success col-sm-2 mt-4 p-2">
-                        <i class="spinOff">Ajouter</i>
-                        <i class="spinOn" style="display: none">
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                            Loading...
-                        </i>
-                    </button>
-            </form>
+                            <div class="row d-flex justify-content-center mt-4 mb-3">
+                                <button type="submit" class="btn btn-success col-sm-2 mt-4 p-2">
+                                    <i class="spinOff">Ajouter</i>
+                                    <i class="spinOn" style="display: none">
+                                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                        Loading...
+                                    </i>
+                                </button>
+                            </div>
+                </form>
         </div>
     </div>
-
     <footer>
-        
-    <?php
-        include '';
+
+        <?php
+        include 'footer.php';
         ?>
     </footer>
     <script src="js/gestion.js"></script>

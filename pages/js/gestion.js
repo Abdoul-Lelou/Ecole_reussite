@@ -1,3 +1,13 @@
+/* let montant = document.getElementById('montant').value 
+console.log(montant);
+montant.addEventListener("keyup", () => {
+    if (!Number.isInteger(montant)){
+        let invalid = document.querySelector('.invalid-feedback');
+        invalid.setAttribute('style', "display: block;");
+    }
+})
+ */
+
 (function () {
     'use strict'
 
@@ -13,48 +23,23 @@
                 event.preventDefault()
                 event.stopPropagation()
             }
-            spinBtn();
+            // spinBtn();
             form.classList.add('was-validated');
         }, false)
         })
 })()
-   
-    function checkAge(){
-        const age = document.querySelector('#validationServer07');
 
-        if (age.value <18){
-                document.querySelector('.invalid-age').style.display='block';
-                document.querySelector('.invalid-age').style.color='red';
+const digits_only = string => [...string].every(c => '0123456789'.includes(c));
+
+    function checkmontant(){
+        const montant = document.querySelector('#validationServer02');
+     
+        if (montant.value <18 || digits_only(montant.value) === false){
+                document.querySelector('.invalid-montant').style.display='block';
+                document.querySelector('.invalid-montant').style.color='red';
             setTimeout(()=>{
-                document.querySelector('.invalid-age').style.display='none';
-                document.querySelector('#validationServer07').value='';
+                document.querySelector('.invalid-montant').style.display='none';
+                document.querySelector('#validationServer02').value='';
             },3000);
         }
     }
-    function checkTel(){
-        const age = document.querySelector('#validationServer08');
-        age = age.replace(/[^a-zA-Z ]/g, "")
-        if (age.value.length <18 || Number.isInteger(age.value)){
-                document.querySelector('.invalid-tel').style.display='block';
-                document.querySelector('.invalid-tel').style.color='red';
-            setTimeout(()=>{
-                document.querySelector('.invalid-tel').style.display='none';
-                document.querySelector('#validationServer08').value='';
-            },3000);
-        }
-    }
-
-    function spinBtn(){
-        const spinOn = document.querySelector('.spinOn');
-        const spinOff = document.querySelector('.spinOff');
-
-        spinOff.style.display = "none";
-        spinOn.style.display = "block"
-
-        setTimeout(()=>{
-            spinOff.style.display = "block";
-            spinOn.style.display = "none";
-        },2000)
-
-    }
-
