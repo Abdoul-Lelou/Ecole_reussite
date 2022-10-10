@@ -24,12 +24,12 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="text-light text-uppercase">Activités</span>
+            <span class="text-light text-uppercase">Fonctionnalités </span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item " href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
+            <li><a class="dropdown-item" href="listPlaning.php">Planning</a></li>
+            <li><a class="dropdown-item " href="#"></a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
