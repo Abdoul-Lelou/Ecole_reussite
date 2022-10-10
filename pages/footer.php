@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="mt-4 bg-dark m-3 border-0 ">
+    <div class=" bg-dark border-0 ">
 <table class="table text-light border-0">
   
   <tr>
@@ -21,8 +21,8 @@
 
 
   <tr>
-    <td class="border-0"> <img src="../img/tel.jpg" alt="" width="40" height="24"> TEL: 77 787 89 89
-      <br> 33 987 67 90</td>
+    <td class="border-0"> <img src="../img/tel.jpg" alt="" width="40" height="24"> TEL: 78 422 73 95
+      <br> 33 000 33 33</td>
       <td class="border-0"> <a href=""><img src="../img/logo-facebook.png" alt="" width="40" height="24"> FACEBOOK</td></a>
     
   </tr>
