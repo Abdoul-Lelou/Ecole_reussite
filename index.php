@@ -6,11 +6,8 @@
         $username = $_POST['username'];
         $passwords = $_POST['passwords'];
 
-        $r=$requeste->connecter($username, $passwords);
+        $requeste->connecter($username, $passwords);
 
-        if($r){
-            echo 'hhhhh,';
-        }
     }
     ?>
 
@@ -45,12 +42,12 @@
                      </nav>
                      <div class="col-md-12 p-3">
                          <label for="input1">Username</label>
-                         <input class="form-control " type='text' name='username' placeholder="nom d'utilisateur">
+                         <input class="form-control " type='text' name='username' placeholder="nom d'utilisateur " required>
                      </div>
 
                      <div class="col-md-12 p-3 ">
                          <label for="input2">Password</label>
-                         <input class="form-control " type="password" name="passwords" placeholder="mot de passe">
+                         <input class="form-control " type="password" name="passwords" placeholder="mot de passe" required>
                      </div>
 
                      <div class="row d-flex justify-content-center mt-2">
@@ -75,6 +72,8 @@
 
      </div>
      <script src="pages/js/connection.js"></script>
+
+        
  </body>
 
  </html>

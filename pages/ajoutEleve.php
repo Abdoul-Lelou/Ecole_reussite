@@ -59,7 +59,7 @@ if (isset(
 
             <nav class="navbar bg-dark">
                 <div class="container ">
-                    <a class="navbar-brand text-white bg-dark " href="#">
+                    <a class="navbar-brand text-white bg-dark pe-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
                         Ajouter un Eleve
                     </a>
@@ -159,6 +159,7 @@ if (isset(
 
         </div>
     </div>
+    
     <script src="js/ajoutEleve.js"></script>
 </body>
 
