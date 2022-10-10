@@ -138,7 +138,7 @@
                             </div>
                             
                              ';
-                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/accueil.php"),3000);
+                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/"),3000);
                         $sql->closeCursor();
                     }
                 }else {
