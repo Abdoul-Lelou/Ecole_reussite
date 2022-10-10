@@ -14,7 +14,11 @@
 </head>
 
 <body>
-
+ <header>
+    <?php
+    include ('navbar.php')
+    ?>
+ </header>
   <div class="container">
 
     <ul id="2" class="nav nav-pills nav-justified">
@@ -137,7 +141,11 @@
     </div>
   </div>
 
-
+<footer>
+    <?php
+    include('footer.php')
+    ?>
+</footer>
 </body>
 
 </html>

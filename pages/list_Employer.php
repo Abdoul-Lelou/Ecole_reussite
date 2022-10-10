@@ -14,6 +14,11 @@
 </head>
 
 <body>
+    <header>
+    <?php
+    include('navbar.php')
+    ?>
+    </header>
 
   <div class="container">
 
@@ -156,6 +161,13 @@
     </div>
   </div>
 
+  <footer>
+    <?php 
+
+        include('footer.php')
+    
+    ?>
+  </footer>
 
 </body>
 
