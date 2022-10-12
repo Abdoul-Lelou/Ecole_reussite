@@ -81,7 +81,7 @@ if (isset(
             <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="ajoutPlanning.php" method="post">
 
                 <div class="col-md-6 mt-2">
-                    <label for="date">date</label>
+                    <label for="date">Date</label>
                     <input type="date" name="jour" placeholder="date" onchange="checkDate()" class="form-control" id="validationServer01" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
@@ -117,7 +117,7 @@ if (isset(
                 </div>
 
                 <div class="col-md-6 mt-2 ">
-                    <label for="matiere">matiere</label>
+                    <label for="matiere">Matiere</label>
                     <select name="matiere" class="form-select is-valid" id="validationServer04" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="français" name='sexe'>français</option>

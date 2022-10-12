@@ -10,7 +10,7 @@
     <title>page d'accueil</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <img class="m-1" src="../img/ecole_reussite.png" width="100" height="60">
   <div class="container-fluid d-flex justify-content-center text-light">
 <div class="d-flex justify-content-center">

@@ -60,7 +60,7 @@
         }
         
        
-        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
+        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule,$nomClasse){
             
             try {
                 $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`lieu_naissance`,`matricule`,`etat`)
@@ -82,18 +82,30 @@
                         
                         ));
 
-                        var_dump($this->db->lastInsertId());die;
+                        $eleve=$this->db->lastInsertId();
+                        
                     // return $sql;
                     if ($sql) {
                         # code...
-                        echo '
-                            <div class="w-50 m-0">
-                                <div class="alert alert-primary" role="alert">
-                                    A simple primary alert—check it out!
-                                </div>
-                            </div>
-                        ';
-                        $sql->closeCursor();
+                        $addClasse= $this->addClasse($nomClasse,$niveau,$eleve);
+                        return $addClasse;
+                        // $sqlAddClasse=$this->db->prepare('UPDATE INTO `classes` ( `nom`, `niveau`,`eleve`)VALUES (:nom,:niveau,:eleve)');
+                        // $sqlAddClasse->execute([
+                        //     "nom" =>$nomClasse,
+                        //     "niveau" =>$niveau,
+                        //     "eleve" => $eleve
+                        // ]);
+                        // if ($sqlAddClasse) {
+                        //     return $sqlAddClasse;
+                        // }
+                        // echo '
+                        //     <div class="w-50 m-0">
+                        //         <div class="alert alert-primary" role="alert">
+                        //             A simple primary alert—check it out!
+                        //         </div>
+                        //     </div>
+                        // ';
+                        // $sql->closeCursor();
                     }
             } catch (\Throwable $th) {
                 echo $th->getMessage();
@@ -181,7 +193,7 @@
              
         }
 
-        public function updateUserSalaire($id,$salaire){ 
+        public function updateUserSalaire($id,$salaire){    
             try {
 
                 $sql=$this->db->prepare('UPDATE  `user` SET salaire=:salaire WHERE id=:id ');
@@ -408,54 +420,20 @@
 
         }
 
-        public function addClasse($eleve){
+        public function addClasse($nom,$niveau,$eleve){
 
             try {
 
-                $sql=$this->db->prepare('INSERT INTO `classe` ( `nom`, `niveau`, `eleve`)VALUES (:nom,:niveau,:eleve)');
-                
-                $checkMail =$this->db->prepare('');
-                $checkMail->bindParam(":matiere",$matiere);
-                $checkMail->bindParam(":jour",$jour);
-                $checkMail->bindParam(":user",$user);
-                $checkMail->bindParam(":startTime",$start);
-                $checkMail->execute();
-                $row = $checkMail->fetch(PDO::FETCH_ASSOC);
-
-               
-                if (!$row) {
-
-                    // $sql->execute(array(
-                        
-                    //     'matiere' =>$matiere,
-                    //     'startTime' => $start,
-                    //     'endTime' => $end,
-                    //     'jour' => $jour,
-                    //     'user' => $user,
-                    //     'classe' => $classe;
-                    // ));
-
-                    return $sql;
-                    $sql->closeCursor();
-                    
-                }else{
-                    echo ' 
-                            
-                                <div   class="d-flex justify-content-center" role="alert">
-                                    <span id="errorMsg" class="badge bg-danger border border-danger">Cours déjà prévu à cette date!</span>
-                                </div>
-                                <script>
-                                    setTimeout(()=>{
-                                        document.querySelector("#errorMsg").style.display= "none";
-                                    },2000)
-                                </script>
-                           
-                             ';
-                    $sql->closeCursor();
-                }
-                
-
-                    
+                $sql=$this->db->prepare('INSERT INTO `classes` ( `nom`, `niveau`, `eleve`)VALUES (:nom,:niveau,:eleve)');
+             
+                $sql->execute([
+                    "nom" => $nom,
+                    "niveau" => $niveau,
+                    "eleve" => $eleve
+                ]);
+    
+                return $sql;
+  
             } catch (\Throwable $th) {
 
                 echo ' 
