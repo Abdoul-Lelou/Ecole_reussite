@@ -2,38 +2,7 @@
 
 require '../model/model.php';
 
-$planning = new ModelUser();
-
-function getDayName($day)
-{
-  $dayName = date('l', strtotime($day));
-
-  switch ($dayName) {
-    case "Monday":
-      echo "Lundi";
-    case "Tuesday":
-      echo "Mardi";
-    case "Wednesday":
-      echo "Mercredi";
-    case "thursday":
-      echo "Jeudi";
-    case "Friday":
-      echo "Vendre";
-    case "Saturday":
-      echo "Samedi";
-    // default:
-    //   echo "Date invalide...!";
-  }
-}
-
-function dateToFrench($date) 
-{
-    $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
-    $french_days = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
-    // $english_months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-    // $french_months = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
-    return  str_replace($english_days, $french_days,'' );
-}
+  $planning = new ModelUser();
 
 ?>
 
@@ -47,7 +16,7 @@ function dateToFrench($date)
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <title>List_Planing</title>
 </head>
 
@@ -131,26 +100,22 @@ function dateToFrench($date)
                  
                       echo "<td>" . $var['matiere'] . "</td>";
                       foreach ($planning->getUserById($var['user']) as $value) {
-                        # code...
+                        
                         echo "<td>".$value["prenom"]." ".$value["nom"]."</td>"; 
                       }
                       foreach ($planning->getClasseById($var['classe']) as $value) {
-                        # code...
+                       
                         echo "<td>".$value["nom"]." ".$value["niveau"]."</td>"; 
                       }
                       echo '<td>
-                                <button type="button" class="btn btn-success btn-lg">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                <button type="button" class="btn btn-outline-success" title="modifier">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
                                 </button>
                             </td>'; 
                    "</tr>";
                       
                   }
                     
-
-                  // foreach ($planning->getUserById($user) as $value) {
-                   
-                  // }
                   echo "<caption>Emploie du temps</caption>";
                 ?>
               
