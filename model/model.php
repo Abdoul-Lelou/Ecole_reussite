@@ -188,14 +188,14 @@
 
         public function getUserById($id){
             try{
-                $sql=$this->db->prepare('SELECT * FROM user where id=:id');
-                $sql->execute(['id'=>$id]);
-        
-                return $sql->fetchAll();
-        }  catch(\Throwable $th) {
-            echo $th->getMessage();
-            $sql->closeCursor();
-        }
+                    $sql=$this->db->prepare('SELECT * FROM user where id=:id');
+                    $sql->execute(['id'=>$id]);
+            
+                    return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
         }
 
         public function getUserByRole($roles){
@@ -446,5 +446,16 @@
 
         }
 
+        public function getClasseById($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM classes where id=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
+        }
         
     }
