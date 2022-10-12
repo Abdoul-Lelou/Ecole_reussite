@@ -29,7 +29,11 @@ if (isset(
     $matricule = $requeste->generateMatricule();
 
     $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);
+<<<<<<< HEAD
     
+=======
+    // $requeste->getUserByRole();
+>>>>>>> 01af6f055911f9f3a21baf914a530dc761ee3671
 
 }
    
@@ -100,8 +104,14 @@ if (isset(
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="col-md-6 mt-2">
                     <label for="age">Age</label>
+=======
+                <div class="col-md-6 mt-4">
+                    <label for="age">age</label>
+
+>>>>>>> 01af6f055911f9f3a21baf914a530dc761ee3671
                     <input type="text" name="age" onchange="checkAge()" placeholder="age" class="form-control p-2" id="validationServer05" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>

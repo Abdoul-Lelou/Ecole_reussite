@@ -16,7 +16,8 @@
 <body>
  <header>
     <?php
-    include ('navbar.php')
+        require "../model/model.php";
+        include ('navbar.php');
     ?>
  </header>
   <div class="container">
@@ -71,7 +72,8 @@
                                     echo '<td>'.$a['sexe'].'</td>';
                                     echo '<td>'.$a['lieu_naissance'].'</td>';
                                     $class = new ModelUser();
-                                    $class->getClass
+                                    $eleve=$class->getClasseById($a['id']);
+                                    var_dump($eleve);die;
                                     echo '<td>
                                     <button type="button" class="btn btn-outline-danger">archiver</button>
                                     <button type="button" class="btn btn-outline-primary">modifier</button>
