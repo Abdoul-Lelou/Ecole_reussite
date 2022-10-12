@@ -97,7 +97,6 @@
                     }
             } catch (\Throwable $th) {
                 echo $th->getMessage();
-                $sql->closeCursor();
             }
         }
 
@@ -193,8 +192,7 @@
                     'ud' => $id
                 ));
 
-                return $sql;
-                $sql->closeCursor();        
+                return $sql;        
             } catch (\Throwable $th) {
 
                  echo ' 
