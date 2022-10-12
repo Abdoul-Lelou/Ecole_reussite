@@ -19,6 +19,11 @@
 ) ()
 
 function checkAge(){
+
+    const age = document.querySelector('#validationServer05');
+
+    if (age.value <6){
+
     const age = document.querySelector('#validationServer05');
 
     if (age.value <6){
@@ -26,6 +31,7 @@ function checkAge(){
             document.querySelector('.invalid-age').style.color='red';
         setTimeout(()=>{
             document.querySelector('.invalid-age').style.display='none';
+            document.querySelector('#validationServer05').value='';
             document.querySelector('#validationServer05').value='';
         },3000);
     }

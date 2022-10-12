@@ -6,7 +6,8 @@
         { 
             try
             {
-                $this->db= new PDO('mysql:host=127.0.0.1;dbname=Ecole_reussite;','root','');
+
+                $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
             }catch(Exception $e)
             {
                 die("Connection erreur du à ".$e->getMessage());
@@ -35,7 +36,7 @@
                     header('location:pages/accueil.php');
                 }
             }
-            
+
 
         }  catch(\Throwable $th) {
             echo $th->getMessage();
@@ -62,8 +63,8 @@
         public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`matricule`,`etat`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance,:matricule,:etat)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`lieu_naissance`,`matricule`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:lieu_naissance,:matricule,:etat)');
             
                         $sql->execute(array(
                         
@@ -74,12 +75,14 @@
                             'username' => $username,
                             'passwords' => $passwords,
                             'roles' => $roles,
-                            'niveau' => $niveau,
+                            // 'niveau' => $niveau,
                             'lieu_naissance' => $lieu_naissance,
                             'matricule' => $matricule,
                             'etat' => 0
                         
                         ));
+
+                        var_dump($this->db->lastInsertId());die;
                     // return $sql;
                     if ($sql) {
                         # code...
@@ -107,11 +110,17 @@
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel,:etat)');
                 
                 $checkMail =$this->db->prepare('SELECT 1 FROM user WHERE email=:email');
+                $checkTel =$this->db->prepare('SELECT 1 FROM user WHERE tel=:tel');
                 $checkMail->bindParam(":email",$email);
+                $checkTel->bindParam(":tel",$tel);
+
                 $checkMail->execute();
+                $checkTel->execute();
+
                 $row = $checkMail->fetch(PDO::FETCH_ASSOC);
             
                 if (!$row) {
+                    
                     $sql->execute(array(
                         
                         'nom' =>$nom,
@@ -138,7 +147,7 @@
                             </div>
                             
                              ';
-                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/"),3000);
+                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/"),3000);
                         $sql->closeCursor();
                     }
                 }else {
@@ -204,8 +213,25 @@
 
         }
 
-        public function addSalaire(){
+        public function addSalaire($montant,$date_heure){
+            try {
+                
+                $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
+                $sql->execute(array(
+                    'montant'=>$montant,
+                    'date_Heure'=>$date_heure,
 
+
+                ));
+
+/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`Employer`)VALUES(:montant,:date_heure,:employer)');
+ */
+
+                return $sql;
+
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
         }
 
         public function updateSalaire(){

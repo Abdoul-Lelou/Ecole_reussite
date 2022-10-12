@@ -28,7 +28,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
-            <li><a class="dropdown-item" href="listPlaning.php">Planning</a></li>
+            <li><a class="dropdown-item" href="ajoutPlanning.php">Planning</a></li>
             <li><a class="dropdown-item " href="#"></a></li>
           </ul>
         </li>
