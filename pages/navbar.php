@@ -10,7 +10,7 @@
     <title>page d'accueil</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
     <img class="m-1" src="../img/ecole_reussite.png" width="100" height="60">
   <div class="container-fluid d-flex justify-content-center text-light">
 <div class="d-flex justify-content-center">
@@ -28,7 +28,12 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
-            <li><a class="dropdown-item" href="ajoutPlanning.php">Planning</a></li>
+            <li><a class="dropdown-item" href="list_Eleve.php">Liste users</a></li>
+            <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
+            <li><a class="dropdown-item" href="listPlaning.php">List Planning</a></li>
+            <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
+
+           <!--  <li><a class="dropdown-item" href="ajoutPlanning.php">Planning</a></li> -->
             <li><a class="dropdown-item " href="#"></a></li>
           </ul>
         </li>

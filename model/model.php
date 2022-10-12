@@ -26,17 +26,22 @@
         
         public function connecter($username,$passwords){
             session_start();
-            try{
-                $sql=$this->db->prepare('SELECT * FROM user');
+            try {
+                $sql = $this->db->prepare('SELECT * FROM user');
                 $sql->execute();
-            while($donnee = $sql->fetch()){
-                if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
-                    $_SESSION['roles']= $donnee['roles'];
-                    $_SESSION['username']= $donnee['username'];
-                    header('location:pages/accueil.php');
+                while ($donnee = $sql->fetch()) {
+                    if ($donnee['username'] == $username && $donnee['passwords'] == $passwords && $donnee['etat'] == 0) {
+                        $_SESSION['roles'] = $donnee['roles'];
+                        $_SESSION['username'] = $donnee['username'];
+                        header('location:pages/accueil.php');
+                    } elseif ($donnee['username'] != $username) {
+                        return "username incorrect";
+                    } elseif ($donnee['passwords'] != $passwords) {
+                        return "password incorrect";
+                    } else {
+                        return "Vous etres archiver ";
+                    }
                 }
-            }
-
 
         }  catch(\Throwable $th) {
             echo $th->getMessage();

@@ -9,3 +9,17 @@ function btnLoad() {
         spinOff.style.display="none";
     }, 2000);
 }
+/* function verifie(){
+    let username=document.getElementById('username');
+    let passwords=document.getElementById('passwords');
+    let erreur = document.getElementsByClassName('erreur');
+
+    if(username === username.value && passwords===passwords.value){
+        erreur.innerHTML ='username ou password incorrect';
+
+    }else{
+        erreur.innerHTML ='correct';
+
+    }
+
+} */
