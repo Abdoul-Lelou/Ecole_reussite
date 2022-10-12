@@ -83,14 +83,16 @@
 
         </div> -->
     </main>
-    <div class="mt-5 d-flex justify-content-center" style=" width: 50%;">
+    <div class="row mt-5 d-flex justify-content-center" style=" width: 50%;">
+    <article class="col-md-12">
         <h1 class="text-info text-center m-5">  </h1>
-        <p class="text-center fs-3 m-5"><strong> <i> l'école de la réussite est un bon établissement primaire et secondaire qui pour objectifs principale
+        <p class="text-center fs-3 m-5"><strong> <i> l'école de la réussite est un bon établissement primaire et secondaire qui a pour objectifs principal
                     d'aider les élèves à La maîtrise de la langue française et des premiers éléments de mathématiques
                     pour permettre aux élèves d'accéder aux outils fondamentaux de la
                     connaissance. Mais aussi nous allons vous transmettre et faire acquérir
                     des connaissances, préparer à la vie professionnelle, éduquer les futurs adultes à être
                     citoyens et à vivre ensemble, viser l'égalité entre élèves dans la réussite éducative.</i></strong></p>
+    </article>
     </div>
     <footer>
         <?php
