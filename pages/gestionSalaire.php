@@ -1,23 +1,27 @@
 <?php
 require "../model/model.php";
 //vérification des champs 
+
+
 if (isset(
     $_POST['date_heure'],
     $_POST['montant'],
-    $_POST['Employer'],
+    $_POST['employer'],
 
 )) {
-     print_r($_POST);
-    $date_heure = trim($_POST['Date_Heure']);
-    $montant = trim($_POST['Montant']);
-    $employer = trim($_POST['Employer']);
-    var_dump($montant,$date_heure);
+   
+    $date_heure = trim($_POST['date_heure']);
+    $montant = trim($_POST['montant']);
+    $employer = trim($_POST['employer']);
+    // var_dump($_POST['date_heure'],
+    // $_POST['montant'],
+    // $_POST['employer']);die;
 
     $requeste = new ModelUser();
 
     // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($Date_Heure, $Montant);
+    $requeste->addSalaire($montant,$date_heure );
 }
 
 ?>

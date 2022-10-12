@@ -152,24 +152,24 @@
 
         }
 
-        public function addSalaire($montant,$date_heure){
+        public function addSalaire($montant,$date_heure,){
             try {
                 
                 $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
+
+                // var_dump($montant);die;
                 $sql->execute(array(
                     'montant'=>$montant,
-                    'date_Heure'=>$date_heure,
-
-
+                    'date_heure'=>$date_heure,
                 ));
-
-/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`Employer`)VALUES(:montant,:date_heure,:employer)');
+/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`employer`)VALUES(:montant,:date_heure,:employer)');
  */
 
                 return $sql;
 
             } catch (\Throwable $th) {
                 //throw $th;
+                echo $th->getMessage();
             }
         }
 

@@ -34,7 +34,7 @@ const digits_only = string => [...string].every(c => '0123456789'.includes(c));
     function checkmontant(){
         const montant = document.querySelector('#validationServer02');
      
-        if (montant.value <30 || digits_only(montant.value) === false){
+        if (montant.value <300 || digits_only(montant.value) === false){
                 document.querySelector('.invalid-montant').style.display='block';
                 document.querySelector('.invalid-montant').style.color='red';
             setTimeout(()=>{
