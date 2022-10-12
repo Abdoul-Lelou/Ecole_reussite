@@ -21,7 +21,7 @@ if (isset(
 
     // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($montant,$date_heure );
+    $requeste->addSalaire($montant,$date_heure,$employer);
 }
 
 ?>
