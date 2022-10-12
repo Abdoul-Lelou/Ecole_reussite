@@ -42,12 +42,13 @@
                      </nav>
                      <div class="col-md-12 p-3">
                          <label for="input1">Username</label>
-                         <input class="form-control " type='text' name='username' placeholder="nom d'utilisateur " required>
+                         <input id="username" class="form-control " type='text' name='username'required placeholder="nom d'utilisateur ">
+                         <span class="erreur" aria-live="polite"></span>
                      </div>
 
                      <div class="col-md-12 p-3 ">
                          <label for="input2">Password</label>
-                         <input class="form-control " type="password" name="passwords" placeholder="mot de passe" required>
+                         <input id="passwords" class="form-control " type="password" name="passwords" required placeholder="mot de passe">
                      </div>
 
                      <div class="row d-flex justify-content-center mt-2">

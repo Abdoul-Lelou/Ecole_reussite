@@ -34,6 +34,16 @@
                     $_SESSION['username']= $donnee['username'];
                     header('location:pages/accueil.php');
                 }
+
+                elseif($donnee['username'] !=$username){
+                    echo'Username incorret';
+
+                }elseif($donnee['passwords'] ==$passwords){
+                    echo' Password incorrect';
+
+                }else{
+                    echo' Vous etes archiver';
+                }
             }
             
 
