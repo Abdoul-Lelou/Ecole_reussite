@@ -9,7 +9,7 @@ function btnLoad() {
         spinOff.style.display="none";
     }, 2000);
 }
-function verifie(){
+/* function verifie(){
     let username=document.getElementById('username');
     let passwords=document.getElementById('passwords');
     let erreur = document.getElementsByClassName('erreur');
@@ -22,4 +22,4 @@ function verifie(){
 
     }
 
-}
+} */

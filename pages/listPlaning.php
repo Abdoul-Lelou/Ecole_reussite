@@ -47,6 +47,7 @@ function dateToFrench($date)
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
   <title>List_Planing</title>
 </head>
 
@@ -100,85 +101,59 @@ function dateToFrench($date)
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Heure</th>
                 <th scope="col">Date</th>
+                <th scope="col">Heure</th>
                 <th scope="col">Matiere</th>
+                <th scope="col">Prof</th>
+                <th scope="col">Classe</th>
+                <th scope="col">Action</th>
+
               </tr>
             </thead>
             <tbody>
               
               <?php
-              // $dates= (int)'08:00:00';
-              //   echo "The time is " . date("h:i",$dates);
+             
               
               foreach ($planning->getPlanning() as $var) {
-                print_r($planning->getUserById($var['user']));die;
-                // echo "\n", $var['heure'], "\t\t", $var['jour'];
-                // echo date('l', strtotime((int)$var['jour']));
-                // echo strftime("%A ", strtotime( $var['jour'] ));
                 
                 echo "<tr>";
-                echo "<th scope='row' >" . date("h:i", (int)$var["heure"]) . "</th>";
-                // echo " <td>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                $dates = strtotime($var['jour']);
-                  if(strtotime($var['jour'])<strtotime("today")){
-                    echo " <td class='bg-danger'>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                  } elseif(strtotime($var['jour'])==strtotime("today")){
-                    echo " <td class='bg-primary'>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                  } else {
-                    echo " <td class='bg-success'>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                  }
-                  // if (date('Y-M-D')< $var['jour'] ) {
-                    //   echo " <td class='bg-danger'>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                    // }else{
-                      //   echo " <td class='bg-success'>".strftime("%A ", strtotime( $var['jour'] ))."</td>";
-                      // }
-                      // echo"</td>";
+                
+                      $dates = strtotime($var['jour']);
+                      if(strtotime($var['jour'])<strtotime("today")){
+                        echo " <td class='bg-danger'>".strftime("%A %e %B %Y  ", strtotime( $var['jour'] ))."</td>";
+                      } elseif(strtotime($var['jour'])==strtotime("today")){
+                        echo " <td class='bg-primary'>".strftime("%A %e %B %Y", strtotime( $var['jour'] ))."</td>";
+                      } else {
+                        echo " <td class='bg-success'>".strftime("%A %e %B %Y", strtotime( $var['jour'] ))."</td>";
+                      }
+                      echo "<th scope='row' >" . date("h:i", (int)$var["startTime"]) . "</th>";
+                 
                       echo "<td>" . $var['matiere'] . "</td>";
-                      // echo "<td>".$var['user']."</td>";
-                      echo "</tr>";
-                      $user =$var['user'];
-                    }
-                    //  $schedule =$planning->getPlanning();
-                    // foreach ($planning->getPlanning() as $schedule) {
-                      # code...
-                      // var_dump($schedule);
-                      // foreach ($schedule as $key => $value) {
-                        //  echo $value;
-              // }
-              // }
-              // for($i= 0; $i< count($schedule); $i++){
-              //   print $schedule[$i];
-              // }
-
-              //   foreach ($planning->getPlanning() as $key => $value) {
-              //     echo $planning->getPlanning();
-              // }
-
-              ?>
-                <?
-                  foreach ($$planning->getUserById($user) as $value) {
-                   
+                      foreach ($planning->getUserById($var['user']) as $value) {
+                        # code...
+                        echo "<td>".$value["prenom"]." ".$value["nom"]."</td>"; 
+                      }
+                      foreach ($planning->getClasseById($var['classe']) as $value) {
+                        # code...
+                        echo "<td>".$value["nom"]." ".$value["niveau"]."</td>"; 
+                      }
+                      echo '<td>
+                                <button type="button" class="btn btn-success btn-lg">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
+                            </td>'; 
+                   "</tr>";
+                      
                   }
-                echo "<caption>Emploie du temps</caption>";
+                    
+
+                  // foreach ($planning->getUserById($user) as $value) {
+                   
+                  // }
+                  echo "<caption>Emploie du temps</caption>";
                 ?>
-              <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr> -->
+              
             </tbody>
           </table>
         </div>
@@ -188,7 +163,7 @@ function dateToFrench($date)
   </div>
 
   <?php
-  include 'navbar.php'
+  include 'footer.php'
   ?>
 </body>
 
