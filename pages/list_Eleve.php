@@ -47,7 +47,9 @@
                         <th scope="col">age</th>
                         <th scope="col">sexe</th>
                         <th scope="col">lieu_naissance</th>
+                        <th scope="col">classe</th>
                         <th scope="col">Action</th>
+
 
 
                         
@@ -68,7 +70,8 @@
                                     echo '<td>'.$a['age'].'</td>';
                                     echo '<td>'.$a['sexe'].'</td>';
                                     echo '<td>'.$a['lieu_naissance'].'</td>';
-                        
+                                    $class = new ModelUser();
+                                    $class->getClass
                                     echo '<td>
                                     <button type="button" class="btn btn-outline-danger">archiver</button>
                                     <button type="button" class="btn btn-outline-primary">modifier</button>
@@ -101,6 +104,7 @@
                         <th scope="col">age</th>
                         <th scope="col">sexe</th>
                         <th scope="col">lieu_naissance</th>
+                        <th scope="col">classe</th>
                         <th scope="col">Action</th>
                         
                         
@@ -124,10 +128,10 @@
                                     echo '<td>'.$a['age'].'</td>';
                                     echo '<td>'.$a['sexe'].'</td>';
                                     echo '<td>'.$a['lieu_naissance'].'</td>';
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-success">desarchiver</button>
+                                    echo '<td>'.$a['lieu_naissance'].'</td>';
 
-                                    </td>';
+                                    echo '<td> <button type="button" class="btn btn-outline-success">desarchiver</button></td>';
+                                      
                         }
                   
                   ?>

@@ -62,8 +62,8 @@
         public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`matricule`,`etat`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance,:matricule,:etat)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`lieu_naissance`,`matricule`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:lieu_naissance,:matricule,:etat)');
             
                         $sql->execute(array(
                         
@@ -74,13 +74,24 @@
                             'username' => $username,
                             'passwords' => $passwords,
                             'roles' => $roles,
-                            'niveau' => $niveau,
                             'lieu_naissance' => $lieu_naissance,
                             'matricule' => $matricule,
                             'etat' => 0
                         
                         ));
                     // return $sql;
+
+                    // $e=$this->db->prepare('SELECT MAX(id)from user');
+                    $sql=$this->db->prepare('SELECT MAX(id)from user');
+                    $sql->execute();
+                while($donnee = $sql->fetch()){
+                    // if($donnee['username'] ==$username && $donnee['passwords'] ==$passwords && $donnee['etat'] ==0 ){
+                    //     $_SESSION['roles']= $donnee['roles'];
+                    //     $_SESSION['username']= $donnee['username'];
+                    //     header('location:pages/accueil.php');
+                    // }
+                    var_dump($donnee[0]);die;
+                }
                     if ($sql) {
                         # code...
                         echo '

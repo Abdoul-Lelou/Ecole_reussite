@@ -29,7 +29,7 @@ if (isset(
     $matricule = $requeste->generateMatricule();
 
     $requeste->ajoutEleve($nom, $prenom, $age, $sexe, $username, $passwords, $roles, $niveau, $lieu_naissance, $matricule);
-    $requeste->getUserByRole()
+    
 
 }
    
@@ -51,6 +51,11 @@ if (isset(
 </head>
 
 <body>
+<header>
+    <?php
+    include('navbar.php')
+    ?>
+</header>
 
     <div class="container d-flex justify-content-center h-100 col-md-12  ">
 
@@ -66,54 +71,54 @@ if (isset(
                 </div>
             </nav>
 
-            <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="ajoutEleve.php" method="post">
-                <div class="col-md-6  mt-4">
-                    <label for="nom">nom</label>
+            <form class="row g-3 mt-2 bg-light needs-validation" novalidate action="ajoutEleve.php" method="post">
+                <div class="col-md-6  mt-2">
+                    <label for="nom">Nom</label>
                     <input type="text" name="nom" placeholder="nom" class="form-control p-2" id="validationServer01" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
-                <div class="col-md-6 mt-4">
-                    <label for="prenom">prenom</label>
+                <div class="col-md-6 mt-2">
+                    <label for="prenom">Prenom</label>
                     <input type="text" name="prenom" placeholder="prenom" class="form-control p-2" id="validationServer02" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
-                <div class="col-md-6 mt-4">
-                    <label for="username">username</label>
+                <div class="col-md-6 mt-2">
+                    <label for="username">Username</label>
                     <input type="text" name="username" placeholder="username" class="form-control p-2" id="validationServer03" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
-                <div class="col-md-6 mt-4">
-                    <label for="password">password</label>
+                <div class="col-md-6 mt-2">
+                    <label for="password">Password</label>
                     <input type="password" name="passwords" placeholder="password" class="form-control p-2" id="validationServer04" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
-                <div class="col-md-6 mt-4">
-                    <label for="age">age</label>
+                <div class="col-md-6 mt-2">
+                    <label for="age">Age</label>
                     <input type="text" name="age" onchange="checkAge()" placeholder="age" class="form-control p-2" id="validationServer05" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                     <div  class="invalid-age" style="display: none;">Age invalide</div>
                 </div>
 
-                <div class="col-md-6 mt-4">
-                    <label for="lieu de naissance">lieu de naissance</label>
-                    <input type="text" name="lieu_naissance" placeholder="lieu de naissance" class="form-control p-2" id="validationServer08" required>
+                <div class="col-md-6 mt-2">
+                    <label for="lieu de naissance">Lieu de naissance</label>
+                    <input type="text" name="lieu_naissance" placeholder="lieu de naissance" class="form-control p-2" id="validationServer06" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
 
 
-                <div class="col-md-6 mt-4">
-                    <label for="input9">niveau</label>
-                    <select name="niveau" id="niveau" placeholder="sexe" class="form-select is-valid p-2" id="validationServer06" required>
+                <div class="col-md-6 mt-2">
+                    <label for="input9">Niveau</label>
+                    <select name="niveau" id="niveau" placeholder="sexe" class="form-select is-valid p-2" id="validationServer07" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="ci" name='niveau'>ci</option>
                         <option value="cp" name='niveau'>cp</option>
@@ -132,9 +137,9 @@ if (isset(
 
 
 
-                <div class="col-md-6 mt-4">
-                    <label for="input9">sexe</label>
-                    <select name="sexe" id="roles" placeholder="sexe" class="form-select is-valid p-2" id="validationServer06" required>
+                <div class="col-md-6 mt-2">
+                    <label for="input9">Sexe</label>
+                    <select name="sexe" id="roles" placeholder="sexe" class="form-select is-valid p-2" id="validationServer08" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="m" name='sexe'>M</option>
                         <option value="f" name='sexe'>F</option>
@@ -142,7 +147,22 @@ if (isset(
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
-                <div class="row d-flex justify-content-center mt-4">
+
+                <!-- <div class="col-md-6 ">
+                    <label for="classes">classes</label>
+                    <input type="text" name="classes" placeholder="classes" class="form-control p-2" id="validationServer09" required>
+
+                </div> -->
+
+                <div class="col-md-12  d-flex justify-content-center">
+                <div class="col-md-6 ">
+                <label for="classes">Classe</label>
+                    <input type="text" name="classe" placeholder="classe" class="form-control p-2" id="validationServer09" required>
+                        <div class="valid-feedback"></div>
+                        <div  class="invalid-feedback">champ invalide</div>
+                    </div>
+                    </div>
+                <div class="row d-flex justify-content-center mt-2">
                     <button type="submit" class="btn btn-success col-3">
                         <i class="spinOff">Ajouter</i>
                         <i class="spinOn" style="display: none">
@@ -161,6 +181,11 @@ if (isset(
     </div>
     
     <script src="js/ajoutEleve.js"></script>
+    <footer>
+        <?php
+        include('footer.php')
+        ?>
+    </footer>
 </body>
 
 </html>
