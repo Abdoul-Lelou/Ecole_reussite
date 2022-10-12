@@ -189,7 +189,7 @@
                 $sql->execute(array(
                     
                     'salaire' =>$salaire,
-                    'ud' => $id
+                    'id' => $id
                 ));
 
                 return $sql;        
