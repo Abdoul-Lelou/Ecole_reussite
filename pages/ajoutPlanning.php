@@ -37,6 +37,7 @@ if (isset(
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -45,9 +46,7 @@ if (isset(
 
 <header>
         <?php
-
-        include 'navbar.php';
-
+            include 'navbar.php';
         ?>
 
     </header>
@@ -82,7 +81,7 @@ if (isset(
             <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="ajoutPlanning.php" method="post">
 
                 <div class="col-md-6 mt-2">
-                    <label for="date">date</label>
+                    <label for="date">Date</label>
                     <input type="date" name="jour" placeholder="date" onchange="checkDate()" class="form-control" id="validationServer01" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
@@ -118,7 +117,7 @@ if (isset(
                 </div>
 
                 <div class="col-md-6 mt-2 ">
-                    <label for="matiere">matiere</label>
+                    <label for="matiere">Matiere</label>
                     <select name="matiere" class="form-select is-valid" id="validationServer04" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="français" name='sexe'>français</option>

@@ -44,6 +44,12 @@
 </head>
 <body>
 
+<header>
+    <?php
+        include 'navbar.php';
+    ?>
+</header>
+
     <div class="container d-flex justify-content-center">
         <div class="col-md-8  mt-4">
 
@@ -128,7 +134,6 @@
                                 Loading...
                             </i>
                         </button>
-                       
                      </div>
         
                     <span class="text text-center mt-2">
@@ -141,6 +146,12 @@
           
             </div>
         </div>
+
+        <footer>
+            <?php
+                include 'footer.php';
+            ?>
+        </footer>
 
         <script src="js/inscription.js"></script>
 

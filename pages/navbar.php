@@ -10,8 +10,8 @@
     <title>page d'accueil</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark p-1 m-2">
-    <img src="../img/ecole_reussite.png" alt="" width="100">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <img class="m-1" src="../img/ecole_reussite.png" width="100" height="60">
   <div class="container-fluid d-flex justify-content-center text-light">
 <div class="d-flex justify-content-center">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,12 +24,12 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="text-light text-uppercase">Activités</span>
+            <span class="text-light text-uppercase">Fonctionnalités </span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item " href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
+            <li><a class="dropdown-item" href="ajoutPlanning.php">Planning</a></li>
+            <li><a class="dropdown-item " href="#"></a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

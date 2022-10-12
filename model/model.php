@@ -6,6 +6,7 @@
         { 
             try
             {
+
                 $this->db= new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;','root','');
             }catch(Exception $e)
             {
@@ -35,7 +36,7 @@
                     header('location:pages/accueil.php');
                 }
             }
-            
+
 
         }  catch(\Throwable $th) {
             echo $th->getMessage();
@@ -59,11 +60,11 @@
         }
         
        
-        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule){
+        public function ajoutEleve($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$niveau,$lieu_naissance,$matricule,$nomClasse){
             
             try {
-                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`niveau`,`lieu_naissance`,`matricule`,`etat`)
-                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:niveau,:lieu_naissance,:matricule,:etat)');
+                $sql=$this->db->prepare('INSERT INTO `user` ( `nom`, `prenom`, `age`, `sexe`,`username`,`passwords`,`roles`,`lieu_naissance`,`matricule`,`etat`)
+                                            VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:lieu_naissance,:matricule,:etat)');
             
                         $sql->execute(array(
                         
@@ -74,27 +75,40 @@
                             'username' => $username,
                             'passwords' => $passwords,
                             'roles' => $roles,
-                            'niveau' => $niveau,
+                            // 'niveau' => $niveau,
                             'lieu_naissance' => $lieu_naissance,
                             'matricule' => $matricule,
                             'etat' => 0
                         
                         ));
+
+                        $eleve=$this->db->lastInsertId();
+                        
                     // return $sql;
                     if ($sql) {
                         # code...
-                        echo '
-                            <div class="w-50 m-0">
-                                <div class="alert alert-primary" role="alert">
-                                    A simple primary alert—check it out!
-                                </div>
-                            </div>
-                        ';
-                        $sql->closeCursor();
+                        $addClasse= $this->addClasse($nomClasse,$niveau,$eleve);
+                        return $addClasse;
+                        // $sqlAddClasse=$this->db->prepare('UPDATE INTO `classes` ( `nom`, `niveau`,`eleve`)VALUES (:nom,:niveau,:eleve)');
+                        // $sqlAddClasse->execute([
+                        //     "nom" =>$nomClasse,
+                        //     "niveau" =>$niveau,
+                        //     "eleve" => $eleve
+                        // ]);
+                        // if ($sqlAddClasse) {
+                        //     return $sqlAddClasse;
+                        // }
+                        // echo '
+                        //     <div class="w-50 m-0">
+                        //         <div class="alert alert-primary" role="alert">
+                        //             A simple primary alert—check it out!
+                        //         </div>
+                        //     </div>
+                        // ';
+                        // $sql->closeCursor();
                     }
             } catch (\Throwable $th) {
                 echo $th->getMessage();
-                $sql->closeCursor();
             }
         }
 
@@ -107,11 +121,17 @@
                                             VALUES (:nom,:prenom,:age,:sexe,:username,:passwords,:roles,:matricule,:lieu_naissance,:email,:tel,:etat)');
                 
                 $checkMail =$this->db->prepare('SELECT 1 FROM user WHERE email=:email');
+                $checkTel =$this->db->prepare('SELECT 1 FROM user WHERE tel=:tel');
                 $checkMail->bindParam(":email",$email);
+                $checkTel->bindParam(":tel",$tel);
+
                 $checkMail->execute();
+                $checkTel->execute();
+
                 $row = $checkMail->fetch(PDO::FETCH_ASSOC);
             
                 if (!$row) {
+                    
                     $sql->execute(array(
                         
                         'nom' =>$nom,
@@ -138,7 +158,7 @@
                             </div>
                             
                              ';
-                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/pages/accueil.php"),3000);
+                             $this->setTimeout($this->redirectUrl("http://localhost/ecole_reussite/"),3000);
                         $sql->closeCursor();
                     }
                 }else {
@@ -173,28 +193,80 @@
              
         }
 
+        public function updateUserSalaire($id,$salaire){    
+            try {
+
+                $sql=$this->db->prepare('UPDATE  `user` SET salaire=:salaire WHERE id=:id ');
+
+                $sql->execute(array(
+                    
+                    'salaire' =>$salaire,
+                    'id' => $id
+                ));
+
+                return $sql;        
+            } catch (\Throwable $th) {
+
+                 echo ' 
+                        <div class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
+                $sql->closeCursor();
+            }
+        }
+
         public function getUser(){
 
         }
 
         public function getUserById($id){
             try{
-                $sql=$this->db->prepare('SELECT * FROM user where id=:id');
-                $sql->execute(['id'=>$id]);
-        
-                return $sql->fetchAll();
-        }  catch(\Throwable $th) {
-            echo $th->getMessage();
-            $sql->closeCursor();
-        }
-        }
-
-        public function getUserByRole(){
-
+                    $sql=$this->db->prepare('SELECT * FROM user where id=:id');
+                    $sql->execute(['id'=>$id]);
+            
+                    return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
         }
 
-        public function addSalaire(){
+        public function getUserByRole($roles){
+            try {
+                $sql=$this->db->prepare('SELECT * FROM user WHERE roles =:roles ');
+                $sql->execute(array('roles'=>$roles));
 
+                return $sql->fetch();
+             
+                // return $sql;
+            } catch (\Throwable $th) {
+                //throw $th;
+                $sql->closeCursor();
+            }
+
+        }
+
+        public function addSalaire($montant,$date_heure){
+            try {
+                
+                $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
+                $sql->execute(array(
+                    'montant'=>$montant,
+                    'date_Heure'=>$date_heure,
+
+
+                ));
+
+/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`Employer`)VALUES(:montant,:date_heure,:employer)');
+ */
+
+                return $sql;
+
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
         }
 
         public function updateSalaire(){
@@ -264,7 +336,7 @@
                     
             } catch (\Throwable $th) {
 
-                echo ' 
+                 echo ' 
                         <div class="d-flex justify-content-center" role="alert">
                             <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
                         </div>          
@@ -348,54 +420,20 @@
 
         }
 
-        public function addClasse($eleve){
+        public function addClasse($nom,$niveau,$eleve){
 
             try {
 
-                $sql=$this->db->prepare('INSERT INTO `classe` ( `nom`, `niveau`, `eleve`)VALUES (:nom,:niveau,:eleve)');
-                
-                $checkMail =$this->db->prepare('');
-                $checkMail->bindParam(":matiere",$matiere);
-                $checkMail->bindParam(":jour",$jour);
-                $checkMail->bindParam(":user",$user);
-                $checkMail->bindParam(":startTime",$start);
-                $checkMail->execute();
-                $row = $checkMail->fetch(PDO::FETCH_ASSOC);
-
-               
-                if (!$row) {
-
-                    // $sql->execute(array(
-                        
-                    //     'matiere' =>$matiere,
-                    //     'startTime' => $start,
-                    //     'endTime' => $end,
-                    //     'jour' => $jour,
-                    //     'user' => $user,
-                    //     'classe' => $classe;
-                    // ));
-
-                    return $sql;
-                    $sql->closeCursor();
-                    
-                }else{
-                    echo ' 
-                            
-                                <div   class="d-flex justify-content-center" role="alert">
-                                    <span id="errorMsg" class="badge bg-danger border border-danger">Cours déjà prévu à cette date!</span>
-                                </div>
-                                <script>
-                                    setTimeout(()=>{
-                                        document.querySelector("#errorMsg").style.display= "none";
-                                    },2000)
-                                </script>
-                           
-                             ';
-                    $sql->closeCursor();
-                }
-                
-
-                    
+                $sql=$this->db->prepare('INSERT INTO `classes` ( `nom`, `niveau`, `eleve`)VALUES (:nom,:niveau,:eleve)');
+             
+                $sql->execute([
+                    "nom" => $nom,
+                    "niveau" => $niveau,
+                    "eleve" => $eleve
+                ]);
+    
+                return $sql;
+  
             } catch (\Throwable $th) {
 
                 echo ' 
@@ -409,5 +447,28 @@
 
         }
 
+        public function getClasseById($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM classes where id=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
+        }
+        
+        public function getClasseByUserId($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM classes where eleve=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
+        }
         
     }
