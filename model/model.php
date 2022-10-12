@@ -182,6 +182,31 @@
              
         }
 
+        public function updateUserSalaire($id,$salaire){ 
+            try {
+
+                $sql=$this->db->prepare('UPDATE  `user` SET salaire=:salaire WHERE id=:id ');
+
+                $sql->execute(array(
+                    
+                    'salaire' =>$salaire,
+                    'ud' => $id
+                ));
+
+                return $sql;
+                $sql->closeCursor();        
+            } catch (\Throwable $th) {
+
+                 echo ' 
+                        <div class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
+                $sql->closeCursor();
+            }
+        }
+
         public function getUser(){
 
         }
