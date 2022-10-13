@@ -14,8 +14,8 @@ exit;
 
 $requete = new ModelUser();
 
-if (isset($_POST['id'])) {
-    $id = (int) $_POST['id'];
+if (isset($_POST['id_des'])) {
+    $id = (int) $_POST['id_des'];
     $requete->desarchiveUser($id);
 }
 

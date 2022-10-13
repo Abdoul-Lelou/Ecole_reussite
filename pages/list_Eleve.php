@@ -79,8 +79,9 @@
                                     <form action='modification.php' method='post'>
                                     <input type='hidden' name='id' value=".$a["id"].">
                                     <button type='submit' class='btn btn-outline-danger'>archiver</button>
-                                  </form>
                                     <button type='button' class='btn btn-outline-primary'>modifier</button>
+                                  </form>
+                                    
 
                                     </td>";
 
@@ -144,8 +145,8 @@
 
                                     echo "<td> 
                                     
-                                    <form action='desarchive.php' method='post'>
-                                    <input type='hidden' name='id' value=".$a["id"].">
+                                    <form action='modification.php' method='post'>
+                                    <input type='hidden' name='id_des' value=".$a["id"].">
                                     <button type='submit'class='btn btn-outline-success'>desarchiver</button>
                                     </form>
 
