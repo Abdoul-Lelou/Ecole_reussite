@@ -35,7 +35,7 @@
                         <li><a class="dropdown-item" href="list_Eleve.php">Liste users</a></li>
                         <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
                         <li><a class="dropdown-item" href="listPlaning.php">List Planning</a></li>
-                        <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
+                        <li><a class="dropdown-item " href="ajoutPlanning.php"> List Salaire</a></li>
                         <li><a class="dropdown-item " href="gestionSalaire.php"> Ajouter un Salaire</a></li>
                         <li><a class="dropdown-item " href="inscription.php">Inscrire employer</a></li> 
                       </ul>';

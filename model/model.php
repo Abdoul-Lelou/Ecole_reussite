@@ -416,8 +416,28 @@
 
         }
 
-        public function addPointage(){
+        public function addPointage($user,$statut){
+            try {
+                
+                $sql= $this->db->prepare('INSERT INTO `pointage`(`present`,`date_heure`,`user`)VALUES(:present,:date_heure,:user)');
 
+                $sql->execute(array(
+                    'present'=>$statut,
+                    'date_heure'=> date("Y-m-d H:i:s"),
+                    'user'=> $user
+                ));
+
+                // if($sql){
+                //     $last_id= $this->db->lastInsertId();
+                //      $this->updateUserSalaire($employerId,$last_id);
+                // }
+
+                return $sql;
+
+            } catch (\Throwable $th) {
+                //throw $th;
+                echo $th->getMessage();
+            }
         }
 
         public function updatePointage(){

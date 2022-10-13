@@ -248,11 +248,6 @@ if (isset(
         </div>
     </div>
 
-    <footer>
-        <?php
-            include 'footer.php';
-        ?>
-    </footer>
     
     <script src="js/ajoutEleve.js"></script>
 </body>

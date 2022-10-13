@@ -194,14 +194,7 @@ if (isset(
     
     </div>
 
-    <footer>
-        <?php
-
-
-        include 'footer.php';
-        ?>
-
-    </footer>
+   
     
     <script src="js/planning.js"></script>
 </body>
