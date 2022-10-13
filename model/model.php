@@ -50,6 +50,26 @@ class ModelUser
         }
     }
 
+    public function addNote($devoir_1, $devoir_2, $examen, $matiere ,$eleve){
+
+        try{
+            $sql = $this->db->prepare('INSERT INTO `notes` (`devoir_1`, `devoir_2`, `examen`, `matiere`, `eleve`) VALUES (:devoir_1,:devoir_2,:examen,:matiere,:eleve)');
+
+            $sql->execute(array(
+                'devoir_1' => $devoir_1,
+                '$devoir_2' => $devoir_2,
+                'examen' => $examen,
+                'matiere' => $matiere,
+                'eleve' => $eleve
+            ));
+        } catch (\Throwable $th) {
+        echo $th->getMessage();
+        $sql->closeCursor();
+    
+    }
+}
+    
+
 
     function generateMatricule($n = 3)
     {

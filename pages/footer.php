@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class=" bg-dark border-0 mb-auto">
+    <div class=" bg-dark border-0 fixed-bottom">
 <table class="table text-light border-0">
   
   <tr>
