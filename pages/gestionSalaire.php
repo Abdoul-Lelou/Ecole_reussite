@@ -9,7 +9,7 @@ if (isset(
     $_POST['employer'],
 
 )) {
-   
+
     $date_heure = trim($_POST['date_heure']);
     $montant = trim($_POST['montant']);
     $employer = trim($_POST['employer']);
@@ -21,7 +21,7 @@ if (isset(
 
     // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($montant,$date_heure,$employer);
+    $requeste->addSalaire($montant, $date_heure, $employer);
 }
 
 ?>
@@ -68,40 +68,40 @@ if (isset(
                     <input type="text" name="montant" onchange="checkmontant()" placeholder="montant" class="form-control montant p-2" id="validationServer02" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
-                    <div  class="invalid-montant" style="display: none;">veillez saisie des chiffres</div>
+                    <div class="invalid-montant" style="display: none;">veillez saisie des chiffres</div>
                 </div>
-                            <div class="col-md-10 mt-4">
-                                <label for="input3">Employer</label>
-                                <select name="employer" placeholder="employer" class="form-select is-valid p-2" id="validationServer03" required>
-                                    <option selected disabled value="">Choisir...</option>
-                                    <?php
-                                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-                                        $sql = $db->prepare('SELECT * FROM user WHERE roles="employer"');
-                                        $sql->execute();
+                <div class="col-md-10 mt-4">
+                    <label for="input3">Employer</label>
+                    <select name="employer" placeholder="employer" class="form-select is-valid p-2" id="validationServer03" required>
+                        <option selected disabled value="">Choisir...</option>
+                        <?php
+                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                        $sql = $db->prepare('SELECT * FROM user WHERE roles="employer"');
+                        $sql->execute();
 
-                                        //afficher la liste des employer
-                                        while ($donnee = $sql->fetch()) {
-                                            echo '<option value=' . $donnee['id'] . '>';
-                                            echo ($donnee['prenom'] . ' ' . $donnee['nom']);
-                                            echo '</option>';
-                                        }
-                                    ?>
+                        //afficher la liste des employer
+                        while ($donnee = $sql->fetch()) {
+                            echo '<option value=' . $donnee['id'] . '>';
+                            echo ($donnee['prenom'] . ' ' . $donnee['nom']);
+                            echo '</option>';
+                        }
+                        ?>
 
-                                </select>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">champ invalide</div>
-                            </div>
+                    </select>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">champ invalide</div>
+                </div>
 
-                            <div class="row d-flex justify-content-center mt-4 mb-3">
-                                <button type="submit" class="btn btn-success col-sm-2 mt-4 p-2">
-                                    <i class="spinOff">Ajouter</i>
-                                    <i class="spinOn" style="display: none">
-                                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                                        Loading...
-                                    </i>
-                                </button>
-                            </div>
-                </form>
+                <div class="row d-flex justify-content-center mt-4 mb-3">
+                    <button type="submit" class="btn btn-success col-sm-2 mt-4 p-2">
+                        <i class="spinOff">Ajouter</i>
+                        <i class="spinOn" style="display: none">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            Loading...
+                        </i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     <footer>

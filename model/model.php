@@ -250,7 +250,10 @@
                 if($sql){
                     $last_id= $this->db->lastInsertId();
                     $employer = $this->getUserById($employerId);
-                    var_dump($last_id);die;
+                    // $editEmployer =
+                     $this->updateUserSalaire($employerId,$last_id);
+
+                    // var_dump($last_id);die;
 
                 }
 /*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`employer`)VALUES(:montant,:date_heure,:employer)');
