@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class=" bg-dark border-0 fixed-bottom">
+  <div class=" bg-dark border-0 ">
     <table class="table text-light border-0">
 
       <tr>

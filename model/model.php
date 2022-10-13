@@ -80,7 +80,6 @@
                             'username' => $username,
                             'passwords' => $passwords,
                             'roles' => $roles,
-                            // 'niveau' => $niveau,
                             'lieu_naissance' => $lieu_naissance,
                             'matricule' => $matricule,
                             'etat' => 0
@@ -89,28 +88,9 @@
 
                         $eleve=$this->db->lastInsertId();
                         
-                    // return $sql;
                     if ($sql) {
-                        # code...
                         $addClasse= $this->addClasse($nomClasse,$niveau,$eleve);
                         return $addClasse;
-                        // $sqlAddClasse=$this->db->prepare('UPDATE INTO `classes` ( `nom`, `niveau`,`eleve`)VALUES (:nom,:niveau,:eleve)');
-                        // $sqlAddClasse->execute([
-                        //     "nom" =>$nomClasse,
-                        //     "niveau" =>$niveau,
-                        //     "eleve" => $eleve
-                        // ]);
-                        // if ($sqlAddClasse) {
-                        //     return $sqlAddClasse;
-                        // }
-                        // echo '
-                        //     <div class="w-50 m-0">
-                        //         <div class="alert alert-primary" role="alert">
-                        //             A simple primary alert—check it out!
-                        //         </div>
-                        //     </div>
-                        // ';
-                        // $sql->closeCursor();
                     }
             } catch (\Throwable $th) {
                 echo $th->getMessage();

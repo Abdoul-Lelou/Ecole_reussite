@@ -41,12 +41,12 @@ if (isset($_POST['username'], $_POST['passwords'])) {
                             </a>
                             <?php
                                 
-                                    echo "<span class='bg-danger'>".$marem."</span>";
+                                    echo "<span id='msg' class='bg-danger'>".$marem."</span>";
                                     echo ' 
-                                            <script>
-                                                 setTimeout(()=>{document.getElementById("msg").remove()},2000);
-                                             </script>          
-                                            ';
+                                        <script>
+                                                setTimeout(()=>{document.getElementById("msg").remove()},2000);
+                                            </script>          
+                                        ';
                                
                             ?>  
                         </div>      

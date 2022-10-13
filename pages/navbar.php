@@ -23,19 +23,23 @@
           <a class="nav-link active text-light text-uppercase" aria-current="page" href="accueil.php">Accueil</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="text-light text-uppercase">Fonctionnalités </span>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
-            <li><a class="dropdown-item" href="list_Eleve.php">Liste users</a></li>
-            <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
-            <li><a class="dropdown-item" href="listPlaning.php">List Planning</a></li>
-            <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
-
-           <!--  <li><a class="dropdown-item" href="ajoutPlanning.php">Planning</a></li> -->
-            <li><a class="dropdown-item " href="#"></a></li>
-          </ul>
+          <?php
+            if (isset($_SESSION['roles'])) {
+              if($_SESSION['roles']=='admin'){
+                echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="text-light text-uppercase">Fonctionnalités </span>
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="ajoutEleve.php">Ajouter un éléve</a></li>
+                        <li><a class="dropdown-item" href="list_Eleve.php">Liste users</a></li>
+                        <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
+                        <li><a class="dropdown-item" href="listPlaning.php">List Planning</a></li>
+                        <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
+                        <li><a class="dropdown-item " href="#"></a></li>
+                      </ul>';
+                    }
+                  }
+              ?>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +47,14 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item " href="../index.php">Se déconnecter</a></li>
-            <li><a class="dropdown-item " href="inscription.php">S'inscrire</a></li>
+            <?php if (isset($_SESSION['roles'])) {
+              if ($_SESSION['roles'] == 'admin') {
+                echo'
+                    <li><a class="dropdown-item " href="inscription.php">Inscrire employer</a></li> 
+                  ';
+                }
+              # code...
+            } ?>
           </ul>
         </li>
       </ul>
