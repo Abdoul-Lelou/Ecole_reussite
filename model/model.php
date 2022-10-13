@@ -178,6 +178,17 @@
              
         }
 
+        public function archiveUser($id){
+            try{
+                $sql=$this->db->prepare('UPDATE user SET etat=1 WHERE id=:id');
+                $sql->execute(['id'=>$id]);
+
+                 return $sql();
+            } catch(\Throwable $th) {
+
+            }
+        }
+
         public function updateUserSalaire($id,$salaire){    
             try {
 
