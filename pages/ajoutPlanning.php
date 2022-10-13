@@ -50,12 +50,12 @@ if (isset(
         ?>
 
     </header>
-    <div class="container d-flex justify-content-center h-100 col-md-12  ">
+    <div class="container d-flex justify-content-center h-100 col-md-12  mt-4">
 
         <div class="col-md-10 mt-4 p-4 ">
 
 
-            <nav class="navbar bg-dark">
+            <nav class="navbar bg-dark mt-4">
                 <div class="container ">
                     <a class="navbar-brand text-white bg-dark pe-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">

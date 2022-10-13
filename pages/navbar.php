@@ -24,8 +24,9 @@
         </li>
         <li class="nav-item dropdown">
           <?php
+          session_start();
             if (isset($_SESSION['roles'])) {
-              if($_SESSION['roles']=='admin'){
+              if($_SESSION['roles'] =='admin'){
                 echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="text-light text-uppercase">Fonctionnalités </span>
                       </a>
@@ -35,7 +36,8 @@
                         <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
                         <li><a class="dropdown-item" href="listPlaning.php">List Planning</a></li>
                         <li><a class="dropdown-item " href="ajoutPlanning.php"> Ajouter un Planning</a></li>
-                        <li><a class="dropdown-item " href="#"></a></li>
+                        <li><a class="dropdown-item " href="gestionSalaire.php"> Ajouter un Salaire</a></li>
+                        <li><a class="dropdown-item " href="inscription.php">Inscrire employer</a></li> 
                       </ul>';
                     }
                   }
@@ -46,15 +48,7 @@
             <span class="text-light text-uppercase">Compte</span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item " href="../index.php">Se déconnecter</a></li>
-            <?php if (isset($_SESSION['roles'])) {
-              if ($_SESSION['roles'] == 'admin') {
-                echo'
-                    <li><a class="dropdown-item " href="inscription.php">Inscrire employer</a></li> 
-                  ';
-                }
-              # code...
-            } ?>
+            <li><a class="dropdown-item " href="disconnect.php">Se déconnecter</a></li>
           </ul>
         </li>
       </ul>

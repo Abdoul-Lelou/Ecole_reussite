@@ -38,6 +38,23 @@ function checkAge(){
     }
 }
 
+function checkNiveau(){
+
+    const niveau1 = document.querySelector('#validationServer07');
+    const niveau2 = document.querySelector('#validationServer09').value.split('_');
+
+
+    if (niveau1.value != niveau2){
+            document.querySelector('.invalid-niveau').style.display='block';
+            document.querySelector('.invalid-niveau').style.color='red';
+        setTimeout(()=>{
+            document.querySelector('.invalid-niveau').style.display='none';
+            document.querySelector('#validationServer09').value='';
+        },3000);
+    }
+}
+
+
 function spinBtn(){
     const spinOn = document.querySelector('.spinOn');
     const spinOff = document.querySelector('.spinOff');

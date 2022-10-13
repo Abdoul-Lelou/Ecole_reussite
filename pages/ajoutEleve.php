@@ -62,12 +62,11 @@ if (isset(
         ?>
     </header>
 
-    <div class="container d-flex justify-content-center h-100 col-md-12  ">
+    <div class="container d-flex justify-content-center h-100 col-md-12  mt-4">
 
-        <div class="col-md-10  ">
-
-
-            <nav class="navbar bg-dark mt-2">
+        <div class="col-md-10  mt-4">
+            <br>
+            <nav class="navbar bg-dark mt-4">
                 <div class="container ">
                     <a class="navbar-brand text-white bg-dark pe-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -89,18 +88,19 @@ if (isset(
                                         setTimeout(()=>{document.getElementById("msg").remove()},2000);
                                     </script>          
                                 ';
-                            }else{
-                                echo ' 
-                                        <div id="msg" class="d-flex justify-content-center" role="alert">
-                                            <span class="badge bg-danger border border-danger">Ajout echoué</span>
-                                        </div>          
-                                    ';
-                                echo ' 
-                                    <script>
-                                        setTimeout(()=>{document.getElementById("msg").remove()},2000);
-                                    </script>          
-                                ';
                             }
+                            // else{
+                            //     echo ' 
+                            //             <div id="msg" class="d-flex justify-content-center" role="alert">
+                            //                 <span class="badge bg-danger border border-danger">Ajout echoué</span>
+                            //             </div>          
+                            //         ';
+                            //     echo ' 
+                            //         <script>
+                            //             setTimeout(()=>{document.getElementById("msg").remove()},2000);
+                            //         </script>          
+                            //     ';
+                            // }
                         ?>
                     </a>
                 </div>
@@ -146,7 +146,7 @@ if (isset(
 
                 <div class="col-md-6">
                     <label for="lieu de naissance">Lieu de naissance</label>
-                    <input type="text" name="lieu_naissance" placeholder="lieu de naissance" class="form-control " id="validationServer08" required>
+                    <input type="text" name="lieu_naissance" placeholder="lieu de naissance" class="form-control " id="validationServer06" required>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                 </div>
@@ -154,7 +154,7 @@ if (isset(
 
                 <div class="col-md-6">
                     <label for="input9">niveau</label>
-                    <select name="niveau" id="niveau" placeholder="niveau" class="form-select is-valid " id="validationServer06" required>
+                    <select name="niveau"  placeholder="niveau" class="form-select is-valid " id="validationServer07" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="ci" name='niveau'>ci</option>
                         <option value="cp" name='niveau'>cp</option>
@@ -169,13 +169,14 @@ if (isset(
                     </select>
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
+                    
                 </div>
 
 
 
                 <div class="col-md-6">
                     <label for="input9">sexe</label>
-                    <select name="sexe" id="roles" placeholder="sexe" class="form-select is-valid " id="validationServer06" required>
+                    <select name="sexe" id="roles" placeholder="sexe" class="form-select is-valid " id="validationServer08" required>
                         <option selected disabled value="">Choisir...</option>
                         <option value="m" name='sexe'>M</option>
                         <option value="f" name='sexe'>F</option>
@@ -185,33 +186,48 @@ if (isset(
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="col-md-6">
-                    <label for="input9">Classe</label>
-                    <select name="classe" id="classe" placeholder="sexe" class="form-select is-valid " id="validationServer06" required>
-                        <option selected disabled value="">Choisir...</option>
-                        <option value="ci_A" name='classe'>ci_A</option>
-                        <option value="ci_B" name='classe'>ci_B</option>
-                        <option value="cp_A" name='classe'>cp_A</option>
-                        <option value="cp_B" name='classe'>cp_B</option>
-                        <option value="ce1_A" name='classe'>ce1_A</option>
-                        <option value="ce1_B" name='classe'>ce1_B</option>
-                        <option value="ce2_A" name='classe'>ce2_A</option>
-                        <option value="ce2_B" name='classe'>ce2_B</option>
-                        <option value="cm1_A" name='classe'>cm1_A</option>
-                        <option value="cm1_B" name='classe'>cm1_B</option>
-                        <option value="cm2_A" name='classe'>cm2_A</option>
-                        <option value="cm2_B" name='classe'>cm2_B</option>
-                        <option value="6ème_A" name='classe'>6ème_A</option>
-                        <option value="6ème_B" name='classe'>6ème_B</option>
-                        <option value="5ème_A" name='classe'>5ème_A</option>
-                        <option value="5ème_B" name='classe'>5ème_B</option>
-                        <option value="4ème_A" name='classe'>4ème_A</option>
-                        <option value="4ème_B" name='classe'>4ème_B</option>
-                        <option value="3ème_A" name='classe'>3ème_A</option>
-                        <option value="3ème_B" name='classe'>3ème_B</option>
+                        <label for="input9">Classe</label>
+                        <select name="classe" 
+                        onchange="
+                            const niveau1 = document.querySelector('#validationServer07');
+                            const niveau2 = document.querySelector('#validationServer09').value.split('_');
 
-                    </select>
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback">champ invalide</div>
+                            if (niveau1.value != niveau2[0]){
+                                    document.querySelector('.invalid-niveau').style.display='block';
+                                    document.querySelector('.invalid-niveau').style.color='red';
+                                setTimeout(()=>{
+                                    document.querySelector('.invalid-niveau').style.display='none';
+                                    document.querySelector('#validationServer09').value='';
+                                },3000);
+                            }
+                        " 
+                        placeholder="sexe" class="form-select is-valid " id="validationServer09" required>
+                            <option selected disabled value="">Choisir...</option>
+                            <option value="ci_A" name='classe'>ci_A</option>
+                            <option value="ci_B" name='classe'>ci_B</option>
+                            <option value="cp_A" name='classe'>cp_A</option>
+                            <option value="cp_B" name='classe'>cp_B</option>
+                            <option value="ce1_A" name='classe'>ce1_A</option>
+                            <option value="ce1_B" name='classe'>ce1_B</option>
+                            <option value="ce2_A" name='classe'>ce2_A</option>
+                            <option value="ce2_B" name='classe'>ce2_B</option>
+                            <option value="cm1_A" name='classe'>cm1_A</option>
+                            <option value="cm1_B" name='classe'>cm1_B</option>
+                            <option value="cm2_A" name='classe'>cm2_A</option>
+                            <option value="cm2_B" name='classe'>cm2_B</option>
+                            <option value="6ème_A" name='classe'>6ème_A</option>
+                            <option value="6ème_B" name='classe'>6ème_B</option>
+                            <option value="5ème_A" name='classe'>5ème_A</option>
+                            <option value="5ème_B" name='classe'>5ème_B</option>
+                            <option value="4ème_A" name='classe'>4ème_A</option>
+                            <option value="4ème_B" name='classe'>4ème_B</option>
+                            <option value="3ème_A" name='classe'>3ème_A</option>
+                            <option value="3ème_B" name='classe'>3ème_B</option>
+
+                        </select>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback">champ invalide</div>
+                        <div class="invalid-niveau" style="display: none;">les champs ne corresponds pas</div>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center mt-4 mb-2">

@@ -17,19 +17,26 @@ require '../model/model.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>List_Planing</title>
 </head>
 
 <body>
-  <?php
-  include 'navbar.php'
-  ?>
+  <header>
+      <?php
+      include 'navbar.php'
+      ?>
+  </header>
+
+  <br><br><br>
   <div class="container">
     <!-- Second Nav-menu -->
 
     <!-- End of second Nav-Menu -->
     <!-- Main Nav-menu -->
-    <ul id="2" class="nav nav-pills nav-justified">
+    <ul id="2" class="nav nav-pills nav-justified mt-4">
       <li class="nav-item">
         <a href="#profile" data-target="#profile" data-toggle="pill" class="nav-link active show profile">
           <span>Profile</span>
@@ -127,9 +134,11 @@ require '../model/model.php';
     <!-- Tab content end-tag -->
   </div>
 
+  <!-- <footer style="margin-bottom: 10rem;" class="border">
   <?php
   include 'footer.php'
   ?>
+  </footer> -->
 </body>
 
 </html>

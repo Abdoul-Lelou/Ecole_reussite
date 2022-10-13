@@ -5,6 +5,7 @@ if (isset($_POST['username'], $_POST['passwords'])) {
     $requeste = new ModelUser();
     $username = $_POST['username'];
     $passwords = $_POST['passwords'];
+//    var_dump($username, $passwords);die;
 
    $marem= $requeste->connecter($username, $passwords);
 
@@ -32,25 +33,25 @@ if (isset($_POST['username'], $_POST['passwords'])) {
             <div class="d-flex justify-content-center mt-5 ">
 
                 <form action="index.php" method="post" class="row g-2 d-block bg-light col-md-8">
-
                     <nav class="navbar navbar-dark bg-dark">
-                        <div class="container border">
+                        <div class="container">
                             <a class="navbar-brand" href="#">
                                 <img src="img/ecole_reussite.png" alt="" width="40" height="24">
                                 <span class="text-center"> CONNEXION </span>
                             </a>
-                            <?php
-                                
-                                    echo "<span id='msg' class='bg-danger'>".$marem."</span>";
-                                    echo ' 
-                                        <script>
-                                                setTimeout(()=>{document.getElementById("msg").remove()},2000);
-                                            </script>          
-                                        ';
-                               
-                            ?>  
+                                <?php
+
+                                    echo "<span id='marem'class='bg-danger'>".$marem."</span>";
+ 
+                                        echo ' 
+                                            <script>
+                                                 setTimeout(()=>{document.getElementById("marem").remove()},2000);
+                                             </script>          
+                                            ';
+                                ?> 
                         </div>      
                     </nav>
+
                     <div class="col-md-12 p-3">
                         <label for="input1">Username</label>
                         <input id="username" class="form-control " type='text' name='username' required placeholder="nom d'utilisateur ">

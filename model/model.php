@@ -39,7 +39,7 @@
                     } elseif ($donnee['passwords'] != $passwords) {
                         return "password incorrect";
                     } else {
-                        return "Vous etres archiver ";
+                        return "Vous etes archiver ";
                     }
                 }
 
@@ -233,28 +233,20 @@
 
         }
 
-        public function addSalaire($montant,$date_heure,$employerId){
+        public function addSalaire($montant,$employerId){
             try {
                 
                 $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
 
-                // var_dump($montant);die;
                 $sql->execute(array(
                     'montant'=>$montant,
-                    'date_heure'=>$date_heure,
+                    'date_heure'=> date("Y-m-d H:i:s"),
                 ));
 
                 if($sql){
                     $last_id= $this->db->lastInsertId();
-                    $employer = $this->getUserById($employerId);
-                    // $editEmployer =
                      $this->updateUserSalaire($employerId,$last_id);
-
-                    // var_dump($last_id);die;
-
                 }
-/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`employer`)VALUES(:montant,:date_heure,:employer)');
- */
 
                 return $sql;
 
