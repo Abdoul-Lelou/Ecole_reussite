@@ -50,55 +50,25 @@
   </button>
 </div>
 
-
-
-<!-- 
-        <div class="d-flex justify-content-center flex-wrap">
-
-            <div id="carouselExampleControls" class="carousel slide d-flex justify-content-center" data-bs-ride="carousel">
-                <div class="carousel-inner ">
-                    <div class="carousel-item active">
-                        <img src="../img/img1.jpeg" class="d-block w-80" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../img/img3.jpeg" class="d-block w-100" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../img/img4.jpg" class="d-block w-100" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../img/img2.jpg" class="d-block w-100" alt="">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-
-        </div> -->
     </main>
-    <div class="row mt-5 d-flex justify-content-center" style=" width: 50%;">
+    <div class="row mt-5 d-flex justify-content-center">
     <article class="col-md-12">
-        <h1 class="text-info text-center m-5">  </h1>
-        <p class="text-center fs-3 m-5"><strong> <i> l'école de la réussite est un bon établissement primaire et secondaire qui a pour objectifs principal
+        <p class="text-center fs-3 m-5"> <i> l'école de la réussite est un bon établissement primaire et secondaire qui a pour objectifs principal
                     d'aider les élèves à La maîtrise de la langue française et des premiers éléments de mathématiques
                     pour permettre aux élèves d'accéder aux outils fondamentaux de la
-                    connaissance. Mais aussi nous allons vous transmettre et faire acquérir
+                    connaissance. Mais aussi nous allons les transmettre et faire acquérir
                     des connaissances, préparer à la vie professionnelle, éduquer les futurs adultes à être
-                    citoyens et à vivre ensemble, viser l'égalité entre élèves dans la réussite éducative.</i></strong></p>
+                    citoyens et à vivre ensemble, viser l'égalité entre élèves dans la réussite éducative.</i></p>
     </article>
     </div>
+
+
+
     <footer>
         <?php
 
-
         include 'footer.php';
+        
         ?>
 
     </footer>

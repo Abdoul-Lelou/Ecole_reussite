@@ -37,10 +37,11 @@ class ModelUser
                     header('location:pages/accueil.php');
                 } elseif ($donnee['username'] != $username) {
                     return "username incorrect";
+                    
                 } elseif ($donnee['passwords'] != $passwords) {
                     return "password incorrect";
                 } else {
-                    return "Vous etres archiver ";
+                    return "Vous etes archiver ";
                 }
             }
         } catch (\Throwable $th) {

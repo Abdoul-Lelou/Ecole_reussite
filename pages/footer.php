@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class=" bg-dark border-0 fixed-bottom">
+    <div class=" bg-dark border-0 mb-auto">
 <table class="table text-light border-0">
   
   <tr>
@@ -18,8 +18,6 @@
     <th class="border-0">RESEAU SOCIAUX</th>
     
   </tr>
-
-
   <tr>
     <td class="border-0"> <img src="../img/tel.jpg" alt="" width="40" height="24"> TEL: 78 422 73 95
       <br> 33 000 33 33</td>
@@ -30,8 +28,6 @@
   <td class="border-0"> <a href=""> <img src="../img/logo_email.png" alt="" width="40" height="24"> EMAIL:  ecolereussite@gmail.com</td></a>
     <td class="border-0"> <a href=""><img src="../img/Linkedin-Logo.webp" alt=""width="80" height="34"> LINKEDIN</td></a>
   </tr>
- 
-
 </table>
 </div>
 </body>

@@ -34,42 +34,21 @@ if (isset($_POST['username'], $_POST['passwords'])) {
                 <form action="index.php" method="post" class="row g-2 d-block bg-light col-md-8">
 
                     <nav class="navbar navbar-dark bg-dark">
-                        <div class="container border">
+                        <div class="container">
                             <a class="navbar-brand" href="#">
                                 <img src="img/ecole_reussite.png" alt="" width="40" height="24">
                                 <span class="text-center"> CONNEXION </span>
                             </a>
                             <?php
-                                
-                                    echo "<span class='bg-danger'>".$marem."</span>";
-                                    echo ' 
+
+                                    echo "<span id='marem'class='bg-danger'>".$marem."</span>";
+ 
+                            echo ' 
                                             <script>
-                                                 setTimeout(()=>{document.getElementById("msg").remove()},2000);
+                                                 setTimeout(()=>{document.getElementById("marem").remove()},2000);
                                              </script>          
                                             ';
-                                // if ($donnee['username'] != $username && ($donnee['passwords'] != $passwords)) {
-                                //     echo ' 
-                                //         <echo $marem;div id="msg" role="alert">
-                                //             <span class="badge bg-danger border border-danger">Username et passwords incorrect!</span>
-                                //         </div>';
-                                //     echo ' 
-                                //             <script>
-                                //                 setTimeout(()=>{document.getElementById("msg").remove()},2000);
-                                //             </script>          
-                                //             ';
-                                // } else {
-                                //     echo ' 
-                                //             <div id="msg role="alert">
-                                //                 <span class="badge bg-danger border border-danger">Vous etes archiver mon cher!</span>
-                                //             </div>          
-                                //         ';
-                                //     echo ' 
-                                //             <script>
-                                //                 setTimeout(()=>{document.getElementById("msg").remove()},2000);
-                                //             </script>          
-                                //             ';
-                                // }
-                            ?>  
+                                            ?> 
                         </div>      
                     </nav>
                     <div class="col-md-12 p-3">
