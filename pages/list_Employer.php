@@ -1,5 +1,8 @@
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,11 +80,13 @@
                                     echo '<td>'.$a['username'].'</td>';
                                     echo '<td>'.$a['passwords'].'</td>';
                                     echo '<td>'.$a['tel'].'</td>';
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-danger">archiver</button>
-                                    <button type="button" class="btn btn-outline-primary">modifier</button>
-
-                                    </td>';
+                                    echo "<td>
+                                    <form action='mod_employer.php' method='post'> 
+                                    <input type='hidden' name='id_em' value=".$a["id"].">
+                                    <button type='submit' class='btn btn-outline-danger'>archiver</button>
+                                    <button type='submit' class='btn btn-outline-primary'>modifier</button>
+                                    </form>
+                                    </td>";
 
                                     
 
@@ -138,10 +143,12 @@
                                     echo '<td>'.$a['username'].'</td>';
                                     echo '<td>'.$a['passwords'].'</td>';
                                     echo '<td>'.$a['tel'].'</td>';
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-success">desarchiver</button>
+                                    echo "<td>
+                                    <form action='mod_employer.php' method='post'>
+                                    <input type='hidden' name='id_emd' value=".$a["id"].">
+                                    <button type='submit' class='btn btn-outline-success'>desarchiver</button>
 
-                                    </td>';
+                                    </td>";
 
                                     
 
