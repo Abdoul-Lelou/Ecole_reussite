@@ -189,6 +189,17 @@
             }
         }
 
+        public function desArchiveUser($id){
+            try{
+                $sql=$this->db->prepare('UPDATE user SET etat=0 WHERE id=:id');
+                $sql->execute(['id'=>$id]);
+
+                 return $sql();
+            } catch(\Throwable $th) {
+
+            }
+        }
+
         public function updateUserSalaire($id,$salaire){    
             try {
 
@@ -369,8 +380,16 @@
 
         }
 
-        public function getPlanningById(){
-
+        public function getPlanningById($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM planning WHERE id=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
         }
 
         public function getPlanningByUserId(){

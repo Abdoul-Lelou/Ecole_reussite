@@ -1,3 +1,15 @@
+
+<?php
+require "../model/model.php";
+
+$desarchive = new ModelUser();
+
+if (isset($_POST['id'])) {
+  $desarchive->desArchiveUser($_POST['id']);
+}
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +24,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>List_Planing</title>
 </head>
 
 <body>
   <header>
     <?php
-    require "../model/model.php";
     include('navbar.php');
     ?>
   </header>
@@ -60,7 +74,7 @@
               <?php
 
               $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=0 ');
+              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=0 LIMIT 1');
 
               while ($a = $sql->fetch()) {
 
@@ -78,15 +92,17 @@
                   echo '<td>' . $value['nom'] . '</td>';
                 }
                 // die;
-                echo "<td>
+                echo "<td class='d-flex col-sm-4'>
                                 <form action='modification.php' method='post'>
-                                <input type='hidden' name='id' value=" . $a["id"] . ">
-                                <button type='submit' class='btn btn-outline-danger'>
+                                  <input type='hidden' name='id' value=" . $a["id"] . ">
+                                  <button type='submit' class='btn btn-outline-danger' title='desarchiver'>
+                                    <span class='fas fa-archive' aria-hidden='true'></span>
+                                  </button>
+                                </form>
+                                <button type='button' class='btn btn-outline-primary'>
                                   <span class='fas fa-edit' aria-hidden='true'></span>
                                 </button>
-                              </form>
-                                <button type='button' class='btn btn-outline-primary'>modifier</button>
-                                </td>";
+                      </td>";
 
 
 
@@ -127,7 +143,7 @@
               <?php
 
               $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=1 ');
+              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=1 LIMIT 1');
 
               while ($a = $sql->fetch()) {
 
@@ -148,9 +164,11 @@
 
                 echo "<td> 
                                 
-                                <form action='desarchive.php' method='post'>
+                                <form action='list_Eleve.php' method='post'>
                                   <input type='hidden' name='id' value=" . $a["id"] . ">
-                                  <button type='submit'class='col-sm-2 btn btn-outline-success'>desarchiver</button>
+                                  <button type='submit'class=' btn btn-outline-success' title='desarchiver'>
+                                    <span class='fas fa-sign' aria-hidden='true'></span>
+                                  </button>
                                 </form>
                                 </td>";
               }
@@ -174,3 +192,4 @@
 </body>
 
 </html>
+
