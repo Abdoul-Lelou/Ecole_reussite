@@ -21,7 +21,7 @@ if (isset(
 
     // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($montant, $date_heure, $employer);
+    $add=$requeste->addSalaire($montant, $date_heure, $employer);
 }
 
 ?>
@@ -54,16 +54,20 @@ if (isset(
                             <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
                             <span class="col-sm-2">Ajouter d'un salaire</span>
                         </a>
+                        <?php
+                        //afficher message de confirmation de soumission
+                        if ($add) {
+                            echo '
+                            <a class="navbar-brand ml-auto border border-danger text-white bg-success col-sm-2" href="#">
+                            <span class="col-sm-2">salaire versé</span>
+                                </a>
+                            ';
+                          }
+
+                        ?>
                     </div>
                 </nav>
-                <div class="col-md-10 mt-4">
-                    <label for="input1">Date_Heure</label>
-                    <input type="datetime-local" name="date_heure" placeholder="date_heure" class="form-control p-2" id="validationServer01" required>
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback">champ invalide</div>
-                </div>
-
-                <div class="col-md-10 mt-4">
+                <div class="col-md-10 mt-2">
                     <label for="input2">montant</label>
                     <input type="text" name="montant" onchange="checkmontant()" placeholder="montant" class="form-control montant p-2" id="validationServer02" required>
                     <div class="valid-feedback"></div>
@@ -104,7 +108,7 @@ if (isset(
             </form>
         </div>
     </div>
-    <footer>
+    <footer class="mt-5">
 
         <?php
         include 'footer.php';
