@@ -138,7 +138,7 @@
                     if ($sql) {
                      
                         echo ' 
-                            <div class="w-75 h-25 d-flex justify-content-center">
+                            <div class="w-75 h-25 mb-auto d-flex justify-content-center">
                                 <div class="alert alert-primary" role="alert">
                                     Inscription reussie!
                                 </div>
@@ -151,10 +151,8 @@
                 }else {
                     echo ' 
                             
-                                <div id="erroMsg"  class="d-flex justify-content-center" role="alert">
-                                    <span class="badge bg-danger border border-danger">Email existe déjà!</span>
-                                </div>
-                           
+                                
+                            <script>alert("Email existe déjà!")</script>
                              ';
                  
 
