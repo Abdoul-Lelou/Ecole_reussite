@@ -1,8 +1,12 @@
 <?php
 require "../model/model.php";
-
+      
+// var_dump($_POST['start'],
+// $_POST['end'],
+// $_POST['jour'],
+// $_POST['user'],
+// $_POST['matiere']);die;
 if (isset(
-    $_POST['matiere'],
     $_POST['start'],
     $_POST['end'],
     $_POST['jour'],
@@ -22,7 +26,11 @@ if (isset(
 
     $requeste = new ModelUser();
 
-    $add = $requeste->addPlanning($matiere, $start, $end, $jour, $user, $classe);
+    $add = $requeste->updatePlanning($matiere, $start, $end, $jour, $user, $classe);
+
+    if ($add) {
+        header('location: pages/listPlanning.php');
+    }
 }
 ?>
 
@@ -59,13 +67,13 @@ if (isset(
                 <div class="container ">
                     <a class="navbar-brand text-white bg-dark pe-none" href="#">
                         <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
-                        Ajouter un Planning
+                        Edit un Planning
                     </a>
                     <?php
                     if (isset($add)) {
                         echo ' 
                                 <div id="msg" class="d-flex justify-content-center" role="alert">
-                                    <span class="badge bg-success border border-success">Planing enregistré!</span>
+                                    <span class="badge bg-success border border-success">Planing modifié!</span>
                                 </div>          
                             ';
                         echo ' 
@@ -78,21 +86,24 @@ if (isset(
                 </div>
             </nav>
 
-            <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="ajoutPlanning.php" method="post">
-                <input type="text" name="id" value="<?php echo $_GET['id'] ?>" hidden>
+            <form class="row g-3 mt-4 bg-light needs-validation" novalidate action="editPlanning.php" method="post">
+                <input type="text" name="id" value="<?php if (isset($_GET['id'])) {
+                    echo $_GET['id'];
+                } ?>" hidden>
                 <div class="col-md-6 mt-2">
                     <label for="date">Date</label>
                     <input type="date" name="jour" placeholder="date" onchange="checkDate()" class="form-control" id="validationServer01" required
-                        value="<?php 
+                    value="<?php 
+
+                        if (isset($_GET['id'])) {
                             $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-                            $sql = $db->prepare('SELECT jour FROM planning WHERE id=:id');
-                            $sql->execute(['id'=> $_GET['id']]);
-    
+                            $sql = $db->prepare('SELECT jour FROM planning WHERE classe='.$_GET['id'].'');
+                            $sql->execute(); 
                             while ($donnee = $sql->fetch()) {
-                                var_dump ($donnee['startTime']);
+                                echo ($donnee['jour']);    
                             }
-                        ?>"
-                    >
+                        }
+                    ?>" >
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                     <div class="invalid-date" style="display: none;">date invalide</div>
@@ -100,17 +111,19 @@ if (isset(
 
                 <div class="col-md-6 mt-2">
                     <label for="eleve">Proffesseur</label>
-                    <select name="user" id="user" class="form-select is-valid" id="validationServer02" required>
+                    <select name="user"  class="form-select is-valid" id="validationServer02" required>
                         <option selected disabled value="">Choisir...</option>
                         <?php
-                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-                        $sql = $db->prepare('SELECT * FROM user WHERE roles="employer"');
-                        $sql->execute();
+                            if(isset($_GET['id'])){
+                            $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                            $sql = $db->prepare('SELECT * FROM user WHERE roles="employer"');
+                            $sql->execute();
 
-                        while ($donnee = $sql->fetch()) {
-                            echo '<option value=' . $donnee['id'] . '>';
-                            echo ($donnee['prenom'] . ' ' . $donnee['nom']);
-                            echo '</option>';
+                            while ($donnee = $sql->fetch()) {
+                                echo '<option value=' . $donnee['id'] . '>';
+                                echo ($donnee['prenom'] . ' ' . $donnee['nom']);
+                                echo '</option>';
+                            }
                         }
                         ?>
                     </select>
@@ -120,7 +133,19 @@ if (isset(
 
                 <div class="col-md-6 mt-2">
                     <label for="debut">Début</label>
-                    <input type="time" name="start" id="heure" onchange="checkStartTime()" id="validationServer03" placeholder="heure" class="form-control" required>
+                    <input type="time" name="start" id="heure" onchange="checkStartTime()" id="validationServer03" placeholder="heure" class="form-control" required
+                    value="<?php 
+                    if (isset($_GET['id'])) {
+                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                        $sql = $db->prepare('SELECT startTime FROM planning WHERE classe='.$_GET['id'].'');
+                        $sql->execute(); 
+                        while ($donnee = $sql->fetch()) {
+                            echo ($donnee['startTime']);    
+                        }
+                    }
+                    
+                    ?>"
+                    >
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
                     <div class="invalid-heure" style="display: none;">heure invalide</div>
@@ -145,7 +170,18 @@ if (isset(
 
                 <div class="col-md-6 mt-2">
                     <label for="fin">Fin</label>
-                    <input type="time" name="end" id="heureEnd" onchange="checkEndTime()" placeholder="heure" id="validationServer05" class="form-control" required>
+                    <input type="time" name="end" id="heureEnd" onchange="checkEndTime()" placeholder="heure" id="validationServer05" class="form-control" required
+                    value="<?php 
+                    if (isset($_GET['id'])) {
+                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                        $sql = $db->prepare('SELECT endTime FROM planning WHERE classe='.$_GET['id'].'');
+                        $sql->execute(); 
+                        while ($donnee = $sql->fetch()) {
+                            echo ($donnee['endTime']);    
+                        }
+                    }
+                    ?>" 
+                    >
 
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback">champ invalide</div>
@@ -161,15 +197,16 @@ if (isset(
                 <option value="f" name='sexe'>F</option> -->
 
                         <?php
-                        $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-                        $sql = $db->prepare('SELECT * FROM classes');
-                        $sql->execute();
-
-                        while ($donnee = $sql->fetch()) {
-                            echo '<option value=' . $donnee['id'] . '>';
-                            echo ($donnee['nom']);
-                            echo '</option>';
-                        }
+                            if (isset($_GET['id'])) {
+                                $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
+                                $sql = $db->prepare('SELECT * FROM classes ');
+                                $sql->execute();
+                                while ($donnee = $sql->fetch()) {
+                                    echo '<option value=' . $donnee['id'] . '>';
+                                        echo ($donnee['nom']);
+                                    echo '</option>';
+                                }
+                            }
                         ?>
                     </select>
                     <div class="valid-feedback"></div>

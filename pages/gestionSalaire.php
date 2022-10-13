@@ -21,7 +21,7 @@ if (isset(
 
     // $matricule = $requeste->generateMatricule();
 
-    $requeste->addSalaire($montant, $employer);
+    $add=$requeste->addSalaire($montant,$employer);
 }
 
 ?>
@@ -49,25 +49,35 @@ if (isset(
     </header>
     <div class="container col-6 mt-4 ">
         <div class="container  mt-4 ">
-            <br><br><br>
-            <nav class="navbar bg-dark mb-4 sm-2">
-                <div class="container ">
-                    <a class="navbar-brand text-white bg-dark col-sm-2" href="#">
-                        <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
-                        <span class="col-sm-2">Ajouter d'un salaire</span>
-                    </a>
-                </div>
-            </nav>
+            <br>          
 
             <form class="row d-flex justify-content-center h-100 col-md-12  g-3 mt-4 bg-light needs-validation col-10 " novalidate action="gestionSalaire.php" method="post">
-                <!-- <div class="col-md-10 mt-4">
-                    <label for="input1">Date_Heure</label>
-                    <input type="datetime-local" name="date_heure" placeholder="date_heure" class="form-control p-2" id="validationServer01" required>
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback">champ invalide</div>
-                </div> -->
-
-                <div class="col-md-10 mt-4">
+                <nav class="navbar bg-dark mb-5 sm-2">
+                    <div class="container ">
+                        <a class="navbar-brand text-white bg-dark col-sm-2" href="#">
+                            <img src="../img/ecole_reussite.png" alt="Logo" width="30" height="34" class="d-inline-block align-text-top">
+                            <span class="col-sm-2">Ajouter d'un salaire</span>
+                        </a>
+                        <a class="ml-auto ">
+                            <?php
+                            //afficher message de confirmation de soumission
+                            if (isset($add)) {
+                                echo ' 
+                                        <div id="msg" class="d-flex justify-content-center" role="alert">
+                                            <span class="badge bg-success border border-success">Salaire versé!</span>
+                                        </div>          
+                                    ';
+                                echo ' 
+                                    <script>
+                                        setTimeout(()=>{document.getElementById("msg").remove()},2000);
+                                    </script>          
+                                ';
+                            }
+                            ?>
+                            </a>
+                    </div>
+                </nav>
+                <div class="col-md-10 mt-2">
                     <label for="input2">montant</label>
                     <input type="text" name="montant" onchange="checkmontant()" placeholder="montant" class="form-control montant p-2" id="validationServer02" required>
                     <div class="valid-feedback"></div>
@@ -108,7 +118,7 @@ if (isset(
             </form>
         </div>
     </div>
-   
+    
     <script src="js/gestion.js"></script>
 </body>
 

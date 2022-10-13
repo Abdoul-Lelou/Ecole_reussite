@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script sc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <title>List_Planing</title>
 </head>
 
@@ -19,8 +18,8 @@
     include('navbar.php')
     ?>
     </header>
-
-  <div class="container">
+<br><br><br><br>
+  <div class="container mt-4">
 
     <ul id="2" class="nav nav-pills nav-justified">
       <li class="nav-item">
@@ -77,11 +76,12 @@
                                     echo '<td>'.$a['username'].'</td>';
                                     echo '<td>'.$a['passwords'].'</td>';
                                     echo '<td>'.$a['tel'].'</td>';
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-danger">archiver</button>
-                                    <button type="button" class="btn btn-outline-primary">modifier</button>
-
-                                    </td>';
+                                    echo "<td>
+                                    <form action='mod_employer.php' method='post'> 
+                                    <input type='hidden' name='id_em' value=".$a["id"].">
+                                    <button type='submit' class='btn btn-outline-danger'>archiver</button>
+                                    </form>
+                                    </td>";
 
                                     
 
@@ -138,10 +138,11 @@
                                     echo '<td>'.$a['username'].'</td>';
                                     echo '<td>'.$a['passwords'].'</td>';
                                     echo '<td>'.$a['tel'].'</td>';
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-success">desarchiver</button>
-
-                                    </td>';
+                                    echo "<td>
+                                    <form action='mod_employer.php' method='post'>
+                                    <input type='hidden' name='id_emd' value=".$a["id"].">
+                                    <button type='submit' class='btn btn-outline-success'>desarchiver</button>
+                                    </td>";
 
                                     
 
@@ -161,6 +162,7 @@
     </div>
   </div>
 
+  
 
 </body>
 

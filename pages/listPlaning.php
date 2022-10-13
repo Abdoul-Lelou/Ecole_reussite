@@ -36,7 +36,7 @@ require '../model/model.php';
   <br><br><br>
   <div class="container">
 
-  <div class="col-md-12">
+  <div class="col-md-12 mt-4">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -45,7 +45,7 @@ require '../model/model.php';
                 <th scope="col">Matiere</th>
                 <th scope="col">Prof</th>
                 <th scope="col">Classe</th>
-                <th scope="col">Action</th>
+                <!-- <th scope="col">Action</th> -->
 
               </tr>
             </thead>
@@ -77,13 +77,13 @@ require '../model/model.php';
                        
                         echo "<td>".$value["nom"]."</td>"; 
                       }
-                      echo '<td>
-                            <a href="editPlanning.php?id='.$value['id'].'">
-                                <button type="button" class="btn btn-outline-success" title="modifier">
-                                    <span class="fas fa-edit" aria-hidden="true"></span>
-                                </button>
-                            </td>
-                            </a> ';
+                      // echo '<td>
+                      //       <a href="editPlanning.php?id='.$value['id'].'">
+                      //           <button type="button" class="btn btn-outline-success" title="modifier">
+                      //               <span class="fas fa-edit" aria-hidden="true"></span>
+                      //           </button>
+                      //       </td>
+                      //       </a> ';
                    "</tr>";
                       
                   }

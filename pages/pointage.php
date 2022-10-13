@@ -69,7 +69,7 @@ if (isset($_POST['user'],$_POST['statut'])) {
                     if (isset($add)) {
                         echo ' 
                                 <div id="msg" class="d-flex justify-content-center" role="alert">
-                                    <span class="badge bg-success border border-success">Planing enregistré!</span>
+                                    <span class="badge bg-success border border-success">Pointage enregistré!</span>
                                 </div>          
                             ';
                         echo ' 
@@ -143,7 +143,7 @@ if (isset($_POST['user'],$_POST['statut'])) {
                     if (isset($add)) {
                         echo ' 
                                 <div id="msg" class="d-flex justify-content-center" role="alert">
-                                    <span class="badge bg-success border border-success">Planing enregistré!</span>
+                                    <span class="badge bg-success border border-success">Pointage enregistré!</span>
                                 </div>          
                             ';
                         echo ' 

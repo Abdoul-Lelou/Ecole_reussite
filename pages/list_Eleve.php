@@ -74,7 +74,7 @@ if (isset($_POST['id'])) {
               <?php
 
               $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=0 LIMIT 1');
+              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=0');
 
               while ($a = $sql->fetch()) {
 
@@ -95,10 +95,11 @@ if (isset($_POST['id'])) {
                 echo "<td class='d-flex col-sm-4'>
                                 <form action='modification.php' method='post'>
                                   <input type='hidden' name='id' value=" . $a["id"] . ">
-                                  <button type='submit' class='btn btn-outline-danger' title='desarchiver'>
+                                  <button type='submit' class='btn btn-outline-danger' title='Archiver'>
                                     <span class='fas fa-archive' aria-hidden='true'></span>
                                   </button>
                                 </form>
+                                &nbsp;
                                 <button type='button' class='btn btn-outline-primary'>
                                   <span class='fas fa-edit' aria-hidden='true'></span>
                                 </button>
@@ -143,7 +144,7 @@ if (isset($_POST['id'])) {
               <?php
 
               $db = new PDO('mysql:host=127.0.0.1;dbname=ecole_reussite;', 'root', '');
-              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=1 LIMIT 1');
+              $sql = $db->query('SELECT * FROM user WHERE roles ="eleve" and etat=1');
 
               while ($a = $sql->fetch()) {
 

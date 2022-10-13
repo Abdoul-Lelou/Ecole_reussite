@@ -24,8 +24,11 @@
             $matricule = $requeste->generateMatricule();
 
          
-            $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
-
+            if(!empty($nom)&&!empty($prenom)&& !empty($username) && !empty($lieu_naissance)) {
+                $requeste->addUser($nom,$prenom,$age,$sexe,$username,$passwords,$roles,$matricule, $lieu_naissance,$email,$tel);
+            }else{
+                echo '<script>alert("Tout les champs doivent etre rempli")</script>';
+            }
 }
 ?>
 

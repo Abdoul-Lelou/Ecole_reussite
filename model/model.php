@@ -30,17 +30,19 @@
                 $sql = $this->db->prepare('SELECT * FROM user');
                 $sql->execute();
                 while ($donnee = $sql->fetch()) {
-                    if ($donnee['username'] == $username && $donnee['passwords'] == $passwords && $donnee['etat'] == 0) {
+                
+                    if ($donnee['username'] == $username && $donnee['passwords'] == $passwords && $donnee['etat'] == 0) {              
                         $_SESSION['roles'] = $donnee['roles'];
                         $_SESSION['username'] = $donnee['username'];
                         header('location:pages/accueil.php');
-                    } elseif ($donnee['username'] != $username) {
-                        return "username incorrect";
-                    } elseif ($donnee['passwords'] != $passwords) {
-                        return "password incorrect";
-                    } else {
-                        return "Vous etes archiver ";
-                    }
+                    } 
+                    // elseif ($donnee['username'] != $username) {
+                    //     return "username incorrect";
+                    // } elseif ($donnee['passwords'] != $passwords) {
+                    //     return "password incorrect";
+                    // } else {
+                    //     return "Vous etes archiver ";
+                    // }
                 }
 
         }  catch(\Throwable $th) {
@@ -363,8 +365,32 @@
             }
         }
 
-        public function updatePlanning(){
+        public function updatePlanning($matiere,$start,$end,$jour,$user,$classe){
+            try {
 
+                $sql=$this->db->prepare('UPDATE  `planning` SET matiere=:matiere, startTime=:startTime, endTime=:endTime, jour=:jour, user=:user, classe=:classe WHERE id=:id ');
+
+                $sql->execute(array(
+                    
+                    'matiere' =>$matiere,
+                    'classe' => $classe,
+                    'startTime' => $start,
+                    'endTime' => $end,
+                    'jour' =>$jour,
+                    'user' =>$user,
+                ));
+                var_dump($sql);die;
+                return $sql;        
+            } catch (\Throwable $th) {
+
+                 echo ' 
+                        <div class="d-flex justify-content-center" role="alert">
+                            <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
+                        </div>          
+                     ';
+                 
+                $sql->closeCursor();
+            }
         }
 
         public function getPlanning(){
