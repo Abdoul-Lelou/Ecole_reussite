@@ -233,24 +233,34 @@
 
         }
 
-        public function addSalaire($montant,$date_heure){
+        public function addSalaire($montant,$date_heure,$employerId){
             try {
                 
                 $sql= $this->db->prepare('INSERT INTO `salaire`(`montant`,`date_heure`)VALUES(:montant,:date_heure)');
+
+                // var_dump($montant);die;
                 $sql->execute(array(
                     'montant'=>$montant,
-                    'date_Heure'=>$date_heure,
-
-
+                    'date_heure'=>$date_heure,
                 ));
 
-/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`Employer`)VALUES(:montant,:date_heure,:employer)');
+                if($sql){
+                    $last_id= $this->db->lastInsertId();
+                    $employer = $this->getUserById($employerId);
+                    // $editEmployer =
+                     $this->updateUserSalaire($employerId,$last_id);
+
+                    // var_dump($last_id);die;
+
+                }
+/*                 $sql= $this->db->prepare(' `salaire`(`montant`,`date_heure`,`employer`)VALUES(:montant,:date_heure,:employer)');
  */
 
                 return $sql;
 
             } catch (\Throwable $th) {
                 //throw $th;
+                echo $th->getMessage();
             }
         }
 
@@ -259,7 +269,15 @@
         }
 
         public function getSalaire(){
-
+            try{
+                $sql=$this->db->prepare('SELECT * FROM salaire');
+                $sql->execute();
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
         }
 
         public function getSalaireById(){
