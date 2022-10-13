@@ -193,6 +193,29 @@
              
         }
 
+        public function archiveUser($id){
+            try{
+                $sql=$this->db->prepare('UPDATE user SET etat=1 WHERE id=:id');
+                $sql->execute(['id'=>$id]);
+
+                 return $sql();
+            } catch(\Throwable $th) {
+
+            }
+        }
+         
+        public function desarchiveUser($id){
+            try{
+                $sql=$this->db->prepare('UPDATE user SET etat=0 WHERE id=:id');
+                $sql->execute(['id'=>$id]);
+
+                return $sql();
+            }catch(\Throwable $th){
+                
+            }
+
+        }
+
         public function getUser(){
 
         }
@@ -312,7 +335,7 @@
                     
             } catch (\Throwable $th) {
 
-                echo ' 
+                 echo ' 
                         <div class="d-flex justify-content-center" role="alert">
                             <span class="badge bg-danger border border-danger">'.$th->getMessage().'</span>
                         </div>          
@@ -460,6 +483,18 @@
         public function getClasseById($id){
             try{
                 $sql=$this->db->prepare('SELECT * FROM classes where id=:id');
+                $sql->execute(['id'=>$id]);
+        
+                return $sql->fetchAll();
+            }  catch(\Throwable $th) {
+                echo $th->getMessage();
+                $sql->closeCursor();
+            }
+        }
+        
+        public function getClasseByUserId($id){
+            try{
+                $sql=$this->db->prepare('SELECT * FROM classes where eleve=:id');
                 $sql->execute(['id'=>$id]);
         
                 return $sql->fetchAll();

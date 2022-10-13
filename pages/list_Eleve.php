@@ -22,7 +22,7 @@
  </header>
   <div class="container">
 
-    <ul id="2" class="nav nav-pills nav-justified">
+    <ul id="2" class="nav nav-pills nav-justified mt-4">
       <li class="nav-item">
         <a href="#profile" data-target="#profile" data-toggle="pill" class="nav-link active show profile">
           <span>Actif</span>
@@ -50,10 +50,7 @@
                         <th scope="col">lieu_naissance</th>
                         <th scope="col">classe</th>
                         <th scope="col">Action</th>
-
-
-
-                        
+                         
                     </tr>
                     </thead>
                     <tbody>
@@ -72,13 +69,20 @@
                                     echo '<td>'.$a['sexe'].'</td>';
                                     echo '<td>'.$a['lieu_naissance'].'</td>';
                                     $class = new ModelUser();
-                                    $eleve=$class->getClasseById($a['id']);
-                                    var_dump($eleve);die;
-                                    echo '<td>
-                                    <button type="button" class="btn btn-outline-danger">archiver</button>
-                                    <button type="button" class="btn btn-outline-primary">modifier</button>
+                                    $eleve=$class->getClasseByUserId($a['id']);
+                                    foreach ($eleve as $value) {
+                                        # code...
+                                        echo '<td>'.$value['nom'].'</td>';
+                                    }
+                                    // die;
+                                    echo "<td>
+                                    <form action='modification.php' method='post'>
+                                    <input type='hidden' name='id' value=".$a["id"].">
+                                    <button type='submit' class='btn btn-outline-danger'>archiver</button>
+                                  </form>
+                                    <button type='button' class='btn btn-outline-primary'>modifier</button>
 
-                                    </td>';
+                                    </td>";
 
                                     
 
@@ -88,7 +92,6 @@
                         }
                   
                   ?>
-
                     </tbody>
                     </table>
 
@@ -130,9 +133,23 @@
                                     echo '<td>'.$a['age'].'</td>';
                                     echo '<td>'.$a['sexe'].'</td>';
                                     echo '<td>'.$a['lieu_naissance'].'</td>';
-                                    echo '<td>'.$a['lieu_naissance'].'</td>';
 
-                                    echo '<td> <button type="button" class="btn btn-outline-success">desarchiver</button></td>';
+                                    $class = new Modeluser();
+
+                                    $eleve=$class->getClasseByUserId($a['id']);
+                                    foreach ($eleve as $value){
+
+                                        echo '<td>'.$value['nom'].'</td>';
+                                    }
+
+                                    echo "<td> 
+                                    
+                                    <form action='desarchive.php' method='post'>
+                                    <input type='hidden' name='id' value=".$a["id"].">
+                                    <button type='submit'class='btn btn-outline-success'>desarchiver</button>
+                                    </form>
+
+                                    </td>";
                                       
                         }
                   
